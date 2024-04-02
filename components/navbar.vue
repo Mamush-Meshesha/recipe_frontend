@@ -1,7 +1,7 @@
 <template>
-  <div class="mb-[235px] relative">
+  <div class="relative mb-[105px]">
     <div class="fixed top-0  w-screen border-b shadow-lg bg-transparent bg-opacity-90 z-50 backdrop-filter backdrop-blur-md">
-      <div class="overflow-x-hidden  py-5">
+      <div class="overflow-x-hidden ">
         <div class="container mx-auto flex justify-between">
           <div class="flex gap-5 items-center">
             <svg
@@ -62,6 +62,9 @@
               />
             </svg>
           </div>
+           <h1 class="py-7 text-5xl font-bold font-sacre text-center">
+              Testibite
+            </h1>
           <div class="flex gap-10 items-center">
             <svg
               class="w-6 h-6 text-gray-800 dark:text-white"
@@ -77,24 +80,10 @@
                 d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
               />
             </svg>
+            
             <button class="px-5 py-1 rounded-md border border-[#7c7c7c]">
               <NuxtLink to="/modal"> Login </NuxtLink>
             </button>
-          </div>
-        </div>
-      </div>
-      <div class="">
-        <div class="flex justify-center">
-          <div>
-            <h1 class="py-7 text-5xl font-bold font-sacre text-center">
-              Testibite
-            </h1>
-            <div class="py-4 flex gap-16">
-              <NuxtLink to="/">Home</NuxtLink>
-              <NuxtLink to="/">recipe</NuxtLink>
-              <NuxtLink to="/">Pages</NuxtLink>
-              <NuxtLink to="/">Buy</NuxtLink>
-            </div>
           </div>
         </div>
       </div>

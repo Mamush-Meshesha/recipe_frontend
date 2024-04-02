@@ -126,7 +126,7 @@
           </div>
         </div>
         <!-- ingredients -->
-        <div class="grid grid-cols-2 gap-20">
+        <div class="">
           <div class="">
             <!-- column one -->
             <div>
@@ -160,404 +160,110 @@
                   </svg>
                 </div>
               </div>
-              <h1 class="text-4xl font-bold font-fractul pb-5">Ingridients</h1>
-              <h1 class="text-xl font-bold font-fractul">For the crust</h1>
-              <div>
-                <div class="flex gap-3 leading-[50px]">
-                  <input type="checkbox" class="w-[20px] border rounded-full" />
-                  <h1>400g grham checker</h1>
-                </div>
-                <div class="flex gap-3 leading-[50px]">
-                  <input type="checkbox" class="w-[20px] border rounded-full" />
-                  <h1>150g unsalted checker, malted</h1>
-                </div>
-                <h1 class="text-xl font-bold font-fractul">For cheesecake</h1>
+              <div class="grid grid-cols-2 gap-10">
                 <div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
-                  </div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
-                  </div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
-                  </div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
-                  </div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
-                  </div>
-                  <div class="flex gap-3 leading-[50px]">
-                    <input
-                      type="checkbox"
-                      class="w-[20px] border rounded-full"
-                    />
-                    <h1>150g unsalted checker, malted</h1>
+                  <h1 class="text-4xl font-bold font-fractul pb-5">
+                    Ingridients
+                  </h1>
+                  <div>
+                    <div class="flex gap-3 leading-[50px]">
+                      <input
+                        type="checkbox"
+                        class="w-[20px] border rounded-full"
+                      />
+                      <h1>400g grham checker</h1>
+                    </div>
+                    <div class="flex gap-3 leading-[50px]">
+                      <input
+                        type="checkbox"
+                        class="w-[20px] border rounded-full"
+                      />
+                      <h1>150g unsalted checker, malted</h1>
+                    </div>
+                    <div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                      <div class="flex gap-3 leading-[50px]">
+                        <input
+                          type="checkbox"
+                          class="w-[20px] border rounded-full"
+                        />
+                        <h1>150g unsalted checker, malted</h1>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- instarctions -->
-              <div>
-                <div class="w-full pt-16">
-                  <h1 class="text-4xl font-bold font-fractul pb-5">
-                    Instractions
-                  </h1>
-                  <ol>
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          1
+                <!-- instarctions -->
+                <div>
+                  <div class="w-full pt-16">
+                    <h1 class="text-4xl font-bold font-fractul pb-5">
+                      Instractions
+                    </h1>
+                    <ol>
+                      <!-- one -->
+                      <div class="flex gap-8 pb-6">
+                        <div class="w-[40px]">
+                          <div
+                            class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
+                          >
+                            1
+                          </div>
+                        </div>
+                        <div class="">
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Provident quibusdam error dolores placeat,
+                            doloribus vel recusandae deleniti sint consequuntur
+                            alias ad atque consectetur veniam voluptas minus
+                            necessitatibus reprehenderit aperiam magni eum
+                            dignissimos. Fugiat perferendis vero doloremque sint
+                            dicta. Consequuntur, facilis iure ab, fugit
+                            reiciendis
+                          </p>
                         </div>
                       </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          2
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          3
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          4
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          5
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          6
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          7
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          8
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                    <!-- one -->
-                    <div class="flex gap-8 pb-6">
-                      <div class="w-[40px]">
-                        <div
-                          class="w-[35px] h-[35px] text-white rounded-full flex items-center justify-center bg-[#ff3d3d]"
-                        >
-                          9
-                        </div>
-                      </div>
-                      <div class="">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Provident quibusdam error dolores placeat,
-                          doloribus vel recusandae deleniti sint consequuntur
-                          alias ad atque consectetur veniam voluptas minus
-                          necessitatibus reprehenderit aperiam magni eum
-                          dignissimos. Fugiat perferendis vero doloremque sint
-                          dicta. Consequuntur, facilis iure ab, fugit reiciendis
-                        </p>
-                      </div>
-                    </div>
-                    <!-- end of  one -->
-                  </ol>
+                      <!-- end of  one -->
+                      <!-- one -->
+                     
+                    </ol>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- end of column one -->
-          </div>
-          <!-- column two -->
-          <div class="pt-10">
-            <div class="border-l pl-10 pt-20">
-              <h1 class="text-4xl font-bold font-fractul pb-5">
-                Nutrition facts
-              </h1>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <div class="bg-[#f9f9f9]">
-                <div class="flex justify-between border-b p-3">
-                  <h1>calories</h1>
-                  <h1>473</h1>
-                </div>
-              </div>
-              <!-- fresh recipes -->
-              <div class="pt-20">
-                 <h1 class="text-4xl font-bold font-fractul pb-5">
-                    fresh recipes
-                  </h1>
-                <div>
-                  <div class="w-full flex gap-5 items-center">
-                    <!-- image -->
-                    <div class="w-[50%]">
-                      <img
-                        src="../images/02.jpeg"
-                        alt="image not found"
-                        class="w-full h-[170px] md:h-[250px] rounded-md rounded-r-none object-cover"
-                      />
-                    </div>
-                    <!-- rating -->
-                    <div>
-                      <div class="card flex justify-content-center pb-5">
-                        <Rating v-model="value" :cancel="false" />
-                      </div>
-                      <div class="pb-5">
-                        <div>
-                          <h1 class="capitalize font-semibold font-poppins">
-                            spanish and cheese pasta
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- two -->
-                <div class="pt-6">
-                  <div class="w-full flex gap-5 items-center">
-                    <!-- image -->
-                    <div class="w-[50%]">
-                      <img
-                        src="../images/02.jpeg"
-                        alt="image not found"
-                        class="w-full h-[170px] md:h-[250px] rounded-md rounded-r-none object-cover"
-                      />
-                    </div>
-                    <!-- rating -->
-                    <div>
-                      <div class="card flex justify-content-center pb-5">
-                        <Rating v-model="value" :cancel="false" />
-                      </div>
-                      <div class="pb-5">
-                        <div>
-                          <h1 class="capitalize font-semibold font-poppins">
-                            spanish and cheese pasta
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- three -->
-                <div class="pt-6">
-                  <div class="w-full flex gap-5 items-center">
-                    <!-- image -->
-                    <div class="w-[50%]">
-                      <img
-                        src="../images/02.jpeg"
-                        alt="image not found"
-                        class="w-full h-[170px] md:h-[250px] rounded-md rounded-r-none object-cover"
-                      />
-                    </div>
-                    <!-- rating -->
-                    <div>
-                      <div class="card flex justify-content-center pb-5">
-                        <Rating v-model="value" :cancel="false" />
-                      </div>
-                      <div class="pb-5">
-                        <div>
-                          <h1 class="capitalize font-semibold font-poppins">
-                            spanish and cheese pasta
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- email box -->
-              <div>
-                <Emailboxthree />
-              </div>
-            </div>
           </div>
         </div>
         <!-- comment section -->
@@ -581,6 +287,10 @@ const step = ref(1);
 const indexs = () => {
   return step.value++;
 };
+
+definePageMeta({
+  middleware: "auth",
+});
 </script>
 
 <style>

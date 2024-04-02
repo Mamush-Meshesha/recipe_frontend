@@ -16,7 +16,9 @@
             <Pagination />
           </template>
         </Carousel>
-        <div class="md:mx-[160px] mx-6 absolute bottom-0 left-0 mb-[60px] w-full md:w-[500px]">
+        <div
+          class="md:mx-[160px] mx-6 absolute bottom-0 left-0 mb-[60px] w-full md:w-[500px]"
+        >
           <div class="flex gap-3">
             <svg
               width="30px"
@@ -32,26 +34,27 @@
             </svg>
             <p class="text-xl text-white">85% would make this again</p>
           </div>
-          <h1 class="capitalize md:text-7xl text-4xl font-bold text-white font-fractul">
+          <h1
+            class="capitalize md:text-7xl text-4xl font-bold text-white font-fractul"
+          >
             cinanon apple loaded tart
           </h1>
         </div>
       </div>
       <!-- end of carousel -->
-      <div class="mx-auto container pt-16">
-        <Popular :food="data.food"/>
+      <!-- <div class="mx-auto container pt-16">
+        <Popular/>
       </div>
       <div class="mx-auto container pt-16">
-        <Delicious :food="data.food"/>
+        <Delicious/>
       </div>
       <div class="mx-auto container pt-16">
-        <Handpicked :food="data.food"/>
-      </div>
+        <Handpicked/>
+      </div> -->
       <div>
-        <Latestrecipe :food="data.food"/>
-        <More />
-      </div>
-      <Emailbox />
+        <Latestrecipe />
+      </div> 
+
       <Footer />
     </div>
   </div>
@@ -62,8 +65,9 @@ import { Carousel, Slide, Navigation, Pagination } from "vue3-carousel";
 
 const settings = {
   itemsToShow: 1,
+  priority: 1,
   snapAlign: "center",
-  autoplay: false, // Enable autoplay if desired
+  autoplay: 0, // Enable autoplay if desired
   autoplaySpeed: 3000, // Autoplay speed in milliseconds
 };
 
@@ -93,25 +97,8 @@ const slides = [
       "https://www.sugarsaltmagic.com/wp-content/uploads/2024/02/Lemon-Blackberry-Cake-17FEAT-500x500.jpg",
   },
 ];
-
-const QUERY_USER = gql`
-  query MyQuery {
-   
-      food {
-        catagory
-        description
-        id
-        recipe_id
-        title
-        url
-        rating {
-          id
-          value
-        }
-      }
-    }
-`;   
-const { data } = useAsyncQuery(QUERY_USER);
-
+definePageMeta({
+  middleware: "already-auth",
+});
 </script>
 <style></style>

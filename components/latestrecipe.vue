@@ -5,12 +5,14 @@
         latest recipes
       </h1>
       <div>
-        <div class="grid md:grid-cols-4 grid-cols-2 gap-2 mx-3 md:mx-0 md:gap-5">
-          <div class="w-full" v-for="latest in food" :key="latest.id">
+        <div
+          class="grid md:grid-cols-4 grid-cols-2 gap-2 mx-3 md:mx-0 md:gap-5"
+        >
+          <div class="w-full" v-for="latest in result?.recipe" :key="latest.id">
             <!-- image -->
-            <div class="w-full">
+            <div class="w-full" v-for="image in latest.images" :key="image.id">
               <img
-                :src="latest.url"
+                :src="image.url[0]"
                 alt="image not found"
                 class="w-full h-[170px] md:h-[250px] rounded-md object-cover"
               />
@@ -24,19 +26,39 @@
               </div>
             </div>
           </div>
+
           <!-- two columns -->
         </div>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const ofvar = ref(0);
+import { useRecipeStore} from "../stores/userStore"
+const offsetStore = useRecipeStore()
+const QUERY_RECIPE = gql`
+  query MyQuery($offset: Int!) {
+    recipe(order_by: { created_at: asc }, offset: $offset, limit: 8) {
+      title
+      images {
+        url
+      }
+    }
+  }
+`;
+const { result, fetchMore, refetch } = useQuery(QUERY_RECIPE, { offset: offsetStore.offset }, () => ({
+  fetchPolicy: "network-only",
+}));
 
-const props = defineProps({
-  food: Object
-})
-
+const loadMore = () => {
+  offsetStore.incrementOffset();// Increment offset value by one
+  fetchMore({ variables: { offset: offsetStore.offset } });
+  refetch()
+  console.log(fetchMore)
+};
 </script>
 
 <style></style>

@@ -53,6 +53,9 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(pollingInterval); // Clear the interval when the component unmounts to avoid memory leaks
 });
+definePageMeta({
+  middleware: "auth",
+});
 </script>
 
 <style></style>

@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import googleFonts from "@nuxtjs/google-fonts";
 export default <Partial<Config>>{
   content: [],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {

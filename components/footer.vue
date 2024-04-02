@@ -1,11 +1,11 @@
 <template>
-  <div class="overflow-hidden">
-    <div class="bg-[#f7f7f7] flex pt-10 md:pt-20 mt-28 h-[500px] md:h-[442px]">
+  <div class="overflow-hidden ">
+    <div class="bg-[#f7f7f7] flex dark:bg-[#0f0f25] transition-colors ease-in-out duration-1000 pt-10 md:pt-20 mt-28 h-[500px] md:h-[442px]">
       <div class="container mx-auto">
         <div
           class="flex md:justify-between md:pb-10 flex-col md:flex-row gap-4 mx-2 md:mx-0"
         >
-          <div class="flex flex-col gap-4 md:gap-8">
+          <div class="flex flex-col gap-4 md:gap-8 dark:text-white">
             <h1 class="font-sacre font-bold text-4xl">Testibite</h1>
             <p class="md:w-[300px] w-full">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. hic
@@ -15,7 +15,7 @@
           </div>
           <!-- testibite -->
           <div
-            class="border flex justify-between border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
+            class="border flex justify-between dark:text-white border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
           >
             <div>
               <h1 class="text-xl font-semibold pb-3">Testibite</h1>
@@ -46,7 +46,7 @@
           </div>
           <!-- legal -->
           <div
-             class="border flex justify-between border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
+             class="border flex dark:text-white justify-between border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
           >
             <div>
               <h1 class="text-xl font-semibold pb-3">legal</h1>
@@ -77,7 +77,7 @@
           </div>
           <!-- follow -->
           <div
-            class="border flex justify-between border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
+            class="border dark:text-white flex justify-between border-l-0 border-t-0 border-r-0 border-b-2 pb-2 md:border-0"
           >
             <div>
               <h1 class="text-xl font-semibold pb-3">Follow</h1>
@@ -108,7 +108,7 @@
           </div>
         </div>
         <!-- bottom legals -->
-        <div class="flex md:justify-between border-t-2 pt-6 flex-col-reverse gap-5 md:gap-0 mx-4 md:mx-0 md:flex-row pb-10 md:pb-0">
+        <div class="flex md:justify-between dark:text-white border-t-2 pt-6 flex-col-reverse gap-5 md:gap-0 mx-4 md:mx-0 md:flex-row pb-10 md:pb-0">
           <h1>&copy;2024,Testibite</h1>
           <div class="flex gap-10">
             <svg
@@ -141,7 +141,7 @@
               width="20px"
               height="20px"
               viewBox="0 0 24 24"
-              fill="none"
+              fill="#fff"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -150,22 +150,25 @@
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+                
               />
               <path
                 opacity="0.34"
                 d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z"
-                stroke="#292D32"
+                stroke="none"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+               
               />
               <path
                 opacity="0.34"
                 d="M17.6361 7H17.6477"
-                stroke="#292D32"
+                stroke="none"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+               
               />
             </svg>
             <svg
@@ -188,6 +191,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+
+</script>
 
 <style></style>

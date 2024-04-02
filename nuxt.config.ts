@@ -2,12 +2,17 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: { enabled: false },
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-primevue",
     "vue3-carousel-nuxt",
     "nuxt-icon",
     "@nuxtjs/apollo",
+    "@nuxtjs/cloudinary",
+    "@pinia/nuxt",
+    "@vueuse/nuxt",
+    "@nuxtjs/color-mode",
     [
       "@vee-validate/nuxt",
       {
@@ -23,6 +28,9 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  colorMode: {
+    classSuffix: "",
+  },
   css: ["@/assets/css/main.css"],
 
   app: {
