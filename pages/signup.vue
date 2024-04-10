@@ -77,7 +77,7 @@ const handleRegisteration = async () => {
         detail: "SUccessfully Registered",
         life: 3000,
       });
-      navigateTo("/modal")
+      navigateTo("/modal");
     } catch (error) {
       console.log(error);
       toast.add({
@@ -96,127 +96,103 @@ definePageMeta({
 });
 </script>
 <template>
-  <div class="container mx-auto md:pt-16 pt-8 px-4 md:px-0">
-    <div
-      v-if="notice"
-      class="md:flex md:justify-between md:shadow-md md:h-[140px] md:border md:rounded-md md:items-center p-10"
-    >
-      <div class="md:w-[60%]">
-        <h1 class="text-4xl pb-4 md:pb-0 font-fractul capitalize font-bold">
-          cookie notice
-        </h1>
-        <p class="pb-4 md:pb-0">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Necessitatibus accusantium atque impedit et blanditiis expedita
-          facilis ab modi itaque assumenda. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. In, iusto.
-        </p>
-      </div>
-      <div>
-        <button
-          @click="notice = false"
-          class="px-6 py-2 bg-[#ff642f] text-white border rounded-md"
+  
+  <div class=" h-screen bg-gradient-to-tr from-[#5C5AC7] to-[#AB59BD]">
+    <div class="container mx-auto md:pt-16 pt-8 px-4 md:px-0">
+      <div class="flex justify-center items-center pt-16">
+        <div
+          class="p-10 border md:w-[50%] bg-[#fff] w-full relative rounded-md shadow-md"
         >
-          Got it
-        </button>
-      </div>
-    </div>
-    <div class="flex justify-center items-center pt-16">
-      <div class="p-10 border md:w-[70%] w-full relative rounded-md shadow-md">
-        <div class="py-6">
-          <h1 class="text-4xl capitalize text-center font-fractul">Sign up</h1>
-          <div class="flex flex-col items-center gap-4 pt-10">
-            <div class="relative pb-9">
-              <div class="flex flex-col">
-                <input
-                  v-model="first_name"
-                  type="text"
-                  placeholder="First Name"
-                  class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
-                />
-                <Icon
-                  name="icon-park-outline:edit-name"
-                  class="text-2xl absolute top-0 left-0 text-[#8d8888]"
-                />
-                <span class="text-red-500 capitalize">
-                  {{ errors.first_name }}
-                </span>
+          <div class="py-6">
+            <h1 class="text-4xl capitalize text-center font-fractul">
+              Sign up
+            </h1>
+            <div class="flex flex-col items-center gap-4 pt-10">
+              <div class="relative pb-9">
+                <div class="flex flex-col">
+                  <input
+                    v-model="first_name"
+                    type="text"
+                    placeholder="First Name"
+                    class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
+                  />
+                  <Icon
+                    name="icon-park-outline:edit-name"
+                    class="text-2xl absolute top-0 left-0 text-[#8d8888]"
+                  />
+                  <span class="text-red-500 capitalize">
+                    {{ errors.first_name }}
+                  </span>
+                </div>
+              </div>
+              <div class="relative pb-9">
+                <div class="flex flex-col">
+                  <input
+                    v-model="last_name"
+                    type="text"
+                    placeholder="Last Name"
+                    class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
+                  />
+                  <Icon
+                    name="icon-park-outline:edit-name"
+                    class="text-2xl absolute top-0 left-0 text-[#9b9696]"
+                  />
+                  <span class="text-red-500 capitalize">
+                    {{ errors.last_name }}
+                  </span>
+                </div>
+              </div>
+              <div class="relative pb-9 flex flex-col">
+                <div class="flex flex-col">
+                  <input
+                    v-model="email"
+                    type="email"
+                    placeholder="Email"
+                    class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
+                  />
+                  <Icon
+                    name="mdi-light:email"
+                    class="text-2xl text-[#6e6b6b] absolute top-0 left-0"
+                  />
+                  <span class="text-red-500 capitalize">
+                    {{ errors.email }}
+                  </span>
+                </div>
+              </div>
+              <div class="relative pb-9">
+                <div class="flex flex-col">
+                  <input
+                    v-model="password"
+                    type="password"
+                    placeholder="Password"
+                    class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
+                  />
+                  <Icon
+                    name="arcticons:password"
+                    class="text-2xl text-[#000] absolute top-0 left-0"
+                  />
+                  <span class="text-red-500 capitalize">
+                    {{ errors.password }}
+                  </span>
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <Toast />
+                <Button
+                  severity="success"
+                  @click="handleRegisteration"
+                  class="px-6 py-2 rounded-md bg-[#ff642f] text-white"
+                >
+                  sign up
+                </Button>
+              </div>
+              <div class="flex gap-10 items-center justify-end">
+                <h1>Already have an account?</h1>
+                <NuxtLink to="/modal" class="text-[#cf326b]">Login</NuxtLink>
               </div>
             </div>
-            <div class="relative pb-9">
-              <div class="flex flex-col">
-                <input
-                  v-model="last_name"
-                  type="text"
-                  placeholder="Last Name"
-                  class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
-                />
-                <Icon
-                  name="icon-park-outline:edit-name"
-                  class="text-2xl absolute top-0 left-0 text-[#9b9696]"
-                />
-                <span class="text-red-500 capitalize">
-                  {{ errors.last_name }}
-                </span>
-              </div>
-            </div>
-            <div class="relative pb-9 flex flex-col">
-              <div class="flex flex-col">
-                <input
-                  v-model="email"
-                  type="email"
-                  placeholder="Email"
-                  class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
-                />
-                <Icon
-                  name="mdi-light:email"
-                  class="text-2xl text-[#6e6b6b] absolute top-0 left-0"
-                />
-                <span class="text-red-500 capitalize">
-                  {{ errors.email }}
-                </span>
-              </div>
-            </div>
-            <div class="relative pb-9">
-              <div class="flex flex-col">
-                <input
-                  v-model="password"
-                  type="password"
-                  placeholder="Password"
-                  class="h-[50x] w-full outline-none border-b px-10 py-1 text-xl"
-                />
-                <Icon
-                  name="arcticons:password"
-                  class="text-2xl text-[#000] absolute top-0 left-0"
-                />
-                <span class="text-red-500 capitalize">
-                  {{ errors.password }}
-                </span>
-              </div>
-            </div>
-            <div class="flex justify-center">
-              <Toast />
-              <Button
-                severity="success"
-                @click="handleRegisteration"
-                class="px-6 py-2 rounded-md bg-[#ff642f] text-white"
-              >
-                sign up
-              </Button>
-            </div>
-            <div class="flex gap-10 items-center justify-end">
-              <h1>Already have an account?</h1>
-              <NuxtLink to="/modal" class="text-[#cf326b]">Login</NuxtLink>
-            </div>
+  
           </div>
-          <div class="flex gap-2 justify-center py-6">
-            <h1>by creating an account you are agree to our</h1>
-            <span class="text-[#ff642f]"> terms and policy </span>
-          </div>
-          <Icon
-            name="lucide:x"
-            class="absolute top-0 right-0 text-3xl mt-5 mr-5"
-          />
         </div>
       </div>
     </div>

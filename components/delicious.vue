@@ -39,6 +39,7 @@
                   <button v-for="i in 5" :key="i" @click="selectStar(i)">
                     &star;
                   </button>
+                  lorem100
                 </div> -->
                 <div class="card flex justify-content-center">
                   <Toast />
@@ -55,6 +56,8 @@
                   >
                     {{ foo.title }}
                   </h1>
+
+                
                 </div>
                 <div class="flex items-center h-[40px] border-t">
                   <div class="px-5 flex justify-between items-center w-full">
@@ -425,30 +428,52 @@ const { mutate: userRating } = useMutation(
   })
 );
 
+const QUERY_CHECK_USER_RATING = gql`
+  query CheckUserRating {
+    rating {
+      id
+      rating_value
+      recipe {
+        id
+      }
+    }
+  }
+`;
+
+const {
+  result: userRatingResult,
+  loading: userRatingLoading,
+  error: userRatingError,
+} = useQuery(QUERY_CHECK_USER_RATING);
+
 const currentRate = result.value;
 
-console.log(currentRate);
 
 const rated = ref(false);
 const handleRatings = async (recipe_id) => {
   try {
-    if (result.value.recipe[0].ratings.length < 0) {
-      await userRating({
-        rating_value: userRatingValue.value,
-        recipe_id: recipe_id,
-      });
-    } else {
+    const userHasRated = result.value.recipe[0].ratings.some(
+      (rating) => rating.user_id === userId
+    );
+
+    if (userHasRated) {
       await updateRate({
         recipe_id: recipe_id,
         rating_value: userRatingValue.value,
         user_id: userId,
       });
+    } else {
+      await userRating({
+        rating_value: userRatingValue.value,
+        recipe_id: recipe_id,
+      });
     }
+
     rated.value = true;
     toast.add({
       severity: "success",
       summary: "Success",
-      detail: "bookmark updated successfully",
+      detail: "rating updated successfully",
       life: 3000,
     });
     refetch();
@@ -457,19 +482,11 @@ const handleRatings = async (recipe_id) => {
   }
 };
 
-// watch(
-//   () => result.value.data,
-//   (newValue) => {
-//     if (newValue && newValue.recipe) {
-//       rated.value = newValue.recipe.rated;
-//     }
-//   }
-// );
+
 </script>
 
 <style>
 .liked {
   color: red;
-  /* Change the color to red when liked */
 }
 </style>

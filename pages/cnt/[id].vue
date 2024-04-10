@@ -140,22 +140,7 @@ const formatTimestamp = (timestamp) => {
                   {{ rec.comments_aggregate.aggregate.count }}
                 </h1>
               </div>
-              <!-- <div class="flex text-2xl border-r px-5">
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-              </div> -->
-              <!-- <div class="px-4">
-                <Icon name="icon-park-outline:like" class="text-2xl" />
-              </div>
-              <div class="flex items-center px-4 border-l">
-                <Icon
-                  name="material-symbols-light:bookmark-outline"
-                  class="text-3xl"
-                />
-              </div> -->
+             
             </div>
           </div>
         </div>

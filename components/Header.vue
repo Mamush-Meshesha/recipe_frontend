@@ -1,42 +1,27 @@
 <template>
-  <div class="sm:pb-44 pb-28 flex relative">
+  <div class="sm:pb-32 pb-28 flex relative">
     <div
       v-for="user in data?.users"
       :key="user.id"
-      class="fixed top-0 right-0 dark:bg-[#040721] w-screen border-b dark:border-[#393961] transition-colors ease-in-out duration-1000 shadow-lg bg-white bg-opacity-10 z-50 backdrop-filter backdrop-blur-md"
+      class="fixed top-0 right-0 dark:bg-[#040721] w-screen border-b dark:border-[#393961] transition-colors ease-in-out duration-1000 shadow-lg bg-white bg-opacity-70 z-50 backdrop-filter backdrop-blur-md"
     >
       <div class="flex py-4 justify-between w-screen container mx-auto md:px-0">
-        <div>
-          <h1
-            class="sm:text-5xl text-4xl font-sacre font-bold dark:text-[#00DC82]"
-          >
-            Testibite
-          </h1>
-        </div>
         <!-- hidden for mobile devices -->
         <div class="lg:flex gap-16 hidden dark:text-white">
-          <NuxtLink to="/" class="font-fractul text-2xl">Home</NuxtLink>
-          <NuxtLink to="/favourate" class="font-fractul text-2xl"
-            >Favourate</NuxtLink
+          <NuxtLink to="/" class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md ">Home</NuxtLink>
+          <NuxtLink to="/allPage" class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md "
+            >catagory</NuxtLink
           >
-          <div class="">
-            <button class="font-fractul text-2xl" @click="showPages">
-              Pages
-            </button>
-            <Transition name="slide-fade">
-              <div
-                v-if="pages"
-                class="flex flex-col border p-2 gap-3 bg-[#486176] top-24 z-40 absolute w-[130px] text-white rounded-md"
+            <NuxtLink
+                to="/upload"
+                class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md "
+                >upload</NuxtLink
               >
-                <NuxtLink to="/upload">Upload recipe</NuxtLink>
-                <NuxtLink to="/about">About</NuxtLink>
-                
-              </div>
-            </Transition>
-          </div>
-          <NuxtLink to="/allPage" class="font-fractul text-2xl"
-            >Catagory</NuxtLink
+          <NuxtLink to="/favourate" class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md "
+            >favourate</NuxtLink
           >
+          <NuxtLink to="/about"  class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md ">About</NuxtLink>
+
         </div>
 
         <div class="flex items-center relative gap-5">
@@ -56,10 +41,7 @@
             </svg>
           </NuxtLink>
           <div class="md:flex items-center px-6 hidden">
-            <button
-              @click="toggleTheme"
-              class="text-yellow-800 "
-            >
+            <button @click="toggleTheme" class="text-yellow-800">
               <Icon
                 name="solar:sun-line-duotone"
                 class="text-3xl"
@@ -88,12 +70,12 @@
                   <div class="flex flex-col gap-4">
                     <NuxtLink
                       to="/profile"
-                      class="border border-[#3049b6] px-3 rounded-sm"
+                      class="border border-[#3049b6] px-3 rounded-sm hover:border hover:bg-[#00DC82] hover:text-white  flex items-center  "
                       >Profile</NuxtLink
                     >
                     <button
                       @click="logout"
-                      class="border border-[#3049b6] px-3 rounded-sm"
+                      class="border border-[#3049b6] px-3 rounded-sm hover:border hover:bg-[#00DC82] hover:text-white  flex items-center "
                     >
                       Logout
                     </button>

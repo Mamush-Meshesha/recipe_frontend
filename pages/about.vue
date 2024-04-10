@@ -1,152 +1,90 @@
 <template>
   <div>
-    <div>
+    <div
+      class="dark:bg-[#050822] dark:text-white transition-colors ease-in-out duration-1000"
+    >
       <Header />
-      <div class="container mx-auto pt-12">
+      <div class="container mx-auto">
         <div class="pb-5 border-b">
-          <h1 class="md:text-5xl text-3xl font-fractul font-bold capitalize">about</h1>
+          <h1 class="md:text-4xl text-3xl font-fractul font-bold capitalize">
+            about
+          </h1>
         </div>
         <div class="pt-10 px-4 md:px-0">
-          <h1 class="md:text-5xl text-3xl font-fractul capitalize font-bold pb-7">
-            we are a group of foodies and who love to cook and internet
+          <h1
+            class="md:text-4xl text-3xl font-fractul capitalize font-bold pb-7"
+          >
+            this is our recipe sharing website
           </h1>
-          <img
-            src="../images/bb.avif"
-            alt=""
-            class="w-full h-[550px] rounded-md object-cover"
-          />
-          <h1 class="pt-6 text-xl font-fractul">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
-            repellendus. Voluptate ut hic magnam, corrupti perferendis dolorem
-            culpa est id quas provident aliquam, architecto error! A fuga est,
-            exercitationem inventore ad provident laboriosam nisi minus vero
-            quasi quidem quae eligendi cupiditate rem veniam voluptatem animi
-            neque dolore. Perferendis, maxime eligendi. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. At accusantium doloremque
-            doloribus, nam, obcaecati eos fuga cupiditate voluptas quo adipisci
-            reprehenderit optio delectus ipsa error nulla, labore iusto! Dicta
-            neque necessitatibus ea aspernatur vitae. Amet dolore eum aliquam
-            voluptates iure.
-          </h1>
-        </div>
-        <div class="md:grid md:grid-cols-2 md:gap-5 pt-20 px-4 md:px-0">
-          <div class="md:w-[80%] w-full">
-            <h1 class="md:text-5xl text-3xl font-fractul pb-5 font-bold">
-              simple, easy recipe for all
-            </h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-              ea enim velit tempore veniam quisquam, sed laborum excepturi aut
-              nobis, saepe impedit odio at. Debitis nostrum in laudantium?
-              Consectetur, sint perspiciatis! Deleniti assumenda expedita
-              voluptate vero recusandae nostrum dicta reprehenderit. Lorem,
-              ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-              explicabo dolorem magnam necessitatibus nostrum quasi possimus hic
-              assumenda corrupti error esse eaque, mollitia aliquam eum quisquam
-              quos officiis ullam harum?
-            </p>
-          </div>
           <div>
-            <img
-              src="../images/cc.jpg"
-              alt=""
-              class="w-full h-[300px] object-cover rounded-md"
-            />
+            <div v-for="rec in resResult?.recipe" :key="rec.id">
+              <div v-for="image in rec.images" :key="image.id">
+                <img
+                  :src="image.url[0]"
+                  alt=""
+                  class="w-full h-[550px] rounded-md object-cover"
+                />
+                <h1 class="pt-6 text-xl font-fractul">
+                  {{ rec.description }}
+                </h1>
+              </div>
+            </div>
           </div>
         </div>
         <!-- team members -->
         <div class="pt-10 px-4 md:px-0">
-          <h1 class="md:text-5xl text-3xl font-fractul capitalize pb-5 font-bold">
-            an incridable and of talented cheif and foodies
+          <h1
+            class="md:text-4xl text-3xl font-fractul capitalize pb-7 font-bold"
+          >
+            our food recipe members and top creators
           </h1>
-          <div class="grid md:grid-cols-6 grid-cols-3 gap-6">
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
-            <div>
-              <img
-                src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
-                alt=""
-                class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
-              />
-              <div>
-                <h1 class="font-bold">hayeom bela</h1>
-                <p class="text-[#bbb]">chief extraordinary</p>
-              </div>
-            </div>
+          <div>
+            <Carousel v-bind="settings" :breakpoints="breakpoints">
+              <Slide
+                v-for="user in result?.users"
+                :key="user.id"
+                class="flex flex-col mx-10"
+              >
+                <div class="flex justify-center pb-3">
+                  <div v-if="user.url">
+                    <img
+                      :src="user.url"
+                      alt=""
+                      class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
+                    />
+                  </div>
+                  <div v-else>
+                    <img
+                      src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
+                      alt=""
+                      class="md:w-[150px] w-[100px] h-[100px] md:h-[150px] rounded-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h1 class="font-bold">{{ user.first_name }}</h1>
+                  <p class="text-[#bbb]">{{ user.email }}</p>
+                </div>
+              </Slide>
+              <template #addons>
+                <Pagination />
+              </template>
+            </Carousel>
           </div>
         </div>
-        <!-- social buttons -->
-        <div class="pt-28 px-4 md:px-0">
-          <div class="md:w-[50%] w-full pb-6 border-b">
-            <h1 class="text-3xl font-bold font-fractul pb-5">
-              operating from NYC, Addis Ababa and Ethiopia
-            </h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
-              exercitationem ratione, ipsum natus magni, iusto modi dolorem
-              rerum, suscipit neque quidem vel laboriosam dolorum velit
-              obcaecati. Officia minima ut est aliquid voluptatem accusamus
-              sapiente odio saepe eum at voluptatum velit, placeat ullam aliquam
-              dignissimos incidunt cupiditate odit tempora minus pariatur.
-            </p>
-          </div>
-          <!-- social icons -->
-          <div>
-            <SocialIcon />
-          </div>
+      </div>
+
+      <div class="container mx-auto pt-12">
+        <h1>Find us here</h1>
+        <div>
+          <iframe
+            width="660"
+            height="340"
+            style="border: 0"
+            loading="lazy"
+            allowfullscreen
+            :src="mapUrl"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -155,8 +93,72 @@
 </template>
 
 <script setup>
+const query = gql`
+  query MyQuery {
+    users {
+      first_name
+      url
+      id
+      last_name
+      email
+      recipes(limit: 1) {
+        title
+        description
+        images {
+          id
+          url
+        }
+      }
+    }
+  }
+`;
+
+const { result } = useQuery(query);
+
+const recpeQuery = gql`
+  query MyQuery {
+    recipe(limit: 1) {
+      title
+      description
+      images {
+        id
+        url
+      }
+    }
+  }
+`;
+const { result: resResult } = useQuery(recpeQuery);
+import { Carousel, Slide, Navigation, Pagination } from "vue3-carousel";
+
+const settings = {
+  itemsToShow: 1,
+  priority: 1,
+  snapAlign: "center",
+  autoplay: 1,
+
+  autoplaySpeed: 1000000,
+};
+
+const breakpoints = {
+  768: {
+    itemsToShow: 4,
+  },
+  1024: {
+    itemsToShow: 5,
+  },
+};
+
+
 definePageMeta({
   middleware: "auth",
+});
+
+const mapUrl = ref("");
+
+const mapApi = import.meta.env.VITE_MAP_API;
+
+onMounted(() => {
+  mapUrl.value = `https://www.google.com/maps/embed/v1/place?key=${mapApi}&q=9.0409338,38.7282904`;
 });
 </script>
 

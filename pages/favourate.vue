@@ -3,8 +3,8 @@
     <Header />
     <div class="">
       
-      <div class="container mx-auto">
-        <h1 class="text-4xl font-semibold text-[#239bb9] font-fractul">Your favourates</h1>
+      <div class="container mx-auto min-h-screen">
+        <h1 class="text-4xl font-semibold text-[#239bb9] font-fractul pb-5">Your favourates</h1>
         <div class="md:grid md:grid-cols-3 md:gap-6 flex flex-col gap-3">
           <!-- box one -->
           <div class="w-full border rounded-lg pb-2" v-for="rec in result?.recipe" :key="rec.id">

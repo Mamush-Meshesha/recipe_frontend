@@ -6,9 +6,7 @@
           @click="isDropdownVisible = true"
           class="p-3 overflow-hidden text-[#aca9a9] hover:border-[#389bb7] flex items-center h-11 rounded-lg border-2 cursor-pointer"
         >
-          {{
-            mappedSelectedIng
-          }}
+          {{ mappedSelectedIng }}
         </div>
         <Transition name="slide-fade">
           <div
@@ -18,10 +16,10 @@
             <div
               @click="toggleSelectedIng(option)"
               class="border py-3 px-1 rounded-md cursor-pointer"
-              v-for="(option, index) in options"
-              :key="index"
+              v-for="option in result.ingredients"
+              :key="option.id"
             >
-              <input type="checkbox" /> {{ option.name }}
+              <input type="checkbox" /> {{ option.name[0] }}
             </div>
           </div>
         </Transition>
@@ -30,40 +28,50 @@
   </div>
 </template>
 <script setup>
+const IngreQuery = gql`
+  query MyQuery {
+    ingredients {
+      name
+      id
+    }
+  }
+`;
+const { result } = useQuery(IngreQuery);
 
-const props = defineProps({
-  options: Array,
-  modelValue: null
-})
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
 const dropdown = ref(null);
 const selectedIngredients = ref([]);
 const isDropdownVisible = ref(false);
-
 const mappedSelectedIng = computed(() => {
-  return selectedIngredients.value.length > 0
-    ? selectedIngredients.value.map((item) => item.name).join(", ")
-    : "please select ingredients";
+  if (selectedIngredients.value && selectedIngredients.value.length > 0) {
+    const uniqueIngredients = selectedIngredients.value.reduce(
+      (accumulator, item) => {
+        if (item.name && item.name.length > 0) {
+          accumulator.push(item.name[0]);
+        }
+        return accumulator;
+      },
+      []
+    );
+    return uniqueIngredients.join(", ");
+  } else {
+    return "Please select ingredients";
+  }
 });
 
-// const toggleSelectedIng = (option) => {
-//   if (selectedIngredients.value.includes(option)) {
-//     selectedIngredients.value = selectedIngredients.value.filter(
-//       (item) => item !== option
-//     );
-//     emit('update:modelValue', selectedIngredients.value.map((item) => item.name).join(" ",))
-//   } else {
-//     selectedIngredients.value.push(option);
-//     emit('update:modelValue', selectedIngredients.value.map((item) => item.name).join(" ",))
-//   }
-//   isDropdownVisible.value = false;
-// };
+const isSelected = (option) => {
+  return selectedIngredients.value.some((item) => {
+    return option.name.some((name) => item.name.includes(name));
+  });
+};
 
 const toggleSelectedIng = (option) => {
   const updatedIngredients = [...selectedIngredients.value];
-  const optionIndex = updatedIngredients.findIndex(item => item.name === option.name);
+  const optionIndex = updatedIngredients.findIndex(
+    (item) => item.id === option.id
+  );
 
   if (optionIndex !== -1) {
     updatedIngredients.splice(optionIndex, 1);
@@ -72,9 +80,12 @@ const toggleSelectedIng = (option) => {
   }
 
   selectedIngredients.value = updatedIngredients;
-  const ingredientNames = updatedIngredients.map(item => item.name);
-  emit('update:modelValue', ingredientNames);
-  isDropdownVisible.value = false;
+
+  const uniqueIngredientNames = Array.from(
+    new Set(updatedIngredients.flatMap((item) => item.name[0]))
+  );
+
+  emit("update:modelValue", uniqueIngredientNames);
 };
 
 const closeDropdown = (element) => {

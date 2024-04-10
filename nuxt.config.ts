@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: { enabled: false },
+
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-primevue",
@@ -41,7 +41,9 @@ export default defineNuxtConfig({
   apollo: {
     authHeader: "Authorization",
     authType: "Bearer",
+
     tokenStorage: "cookie",
+
     clients: {
       default: {
         httpEndpoint: "http://localhost:8181/v1/graphql",

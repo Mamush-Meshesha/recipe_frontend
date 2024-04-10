@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-[#040721] transition-colors ease-in-out duration-1000">
+  <div class="dark:bg-[#040721] overflow-hidden relative transition-colors ease-in-out duration-1000">
     <div>
       <Header />
       <div class="container mx-auto">
@@ -8,27 +8,31 @@
         >
           <div class="flex justify-between px-4 md:px-0 items-center">
             <h1
-              class="text-4xl font-fractul dark:text-white font-semibold capitalize"
+              class="text-4xl font-fractul dark:text-white transition-colors ease-in-out duration-1000  font-semibold capitalize"
             >
               profile
             </h1>
             <button
               @click="showProfile"
-              class="px-9 py-2 bg-[#ff642f] dark:bg-[#3C4042] text-white rounded-md"
+              class="px-9 py-2 bg-[#ff642f] dark:bg-[#3C4042] transition-colors ease-in-out duration-1000  text-white rounded-md"
             >
               Edit Profile
             </button>
           </div>
         </div>
 
-        <Transition name="slide-fade">
-          <div class="flex justify-end">
-            <div
-              v-if="editPro"
-              class="border mx-10 absolute z-40 bg-[#113310] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl flex justify-center w-full px-5 sm:px-0 sm:w-[60%]"
+        <Transition   name="slide-fade" class="w-[100vw] top-0 overflow-hidden h-full  left-0 absolute opacity-80 z-40 bg-[#000000] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl  px-5 sm:px-0 ">
+          <div class="flex justify-center items-center" v-if="editPro">
+            <div class="w-[50%] h-[35%] mt-[-800px] relative opacity-100 rounded-lg bg-[#136463] flex justify-center border"
+             
+              
             >
+
+           <button @click="showProfile">
+             <Icon name="gala:remove" class="text-4xl mr-3 mt-3 absolute top-0 right-0 text-[#ff2727]"/>
+           </button>
               <!-- profile upload -->
-              <div class="pt-16" v-for="user in data.users" :key="user.id">
+              <div class="pt-16 text-white" v-for="user in data.users" :key="user.id">
                 <div
                   class="flex gap-4 justify-center px-6 md:justify-content-center"
                 >
@@ -50,8 +54,8 @@
                   </div>
                   <div class="flex gap-6 items-center">
                     <button
-                      @click="uploadImage"
-                      class="mx:px-12 px-6 h-[40px] text-white items-center dark:bg-[#3C4042] transition-colors ease-in-out duration-1000 bg-[#ff642f] rounded-md"
+                      @click="handleImageUpload"
+                      class="mx:px-12 px-6 h-[40px] text-white items-center dark:bg-[#3C4042]  transition-colors ease-in-out duration-1000 bg-[#ff642f] rounded-md"
                     >
                       Change
                     </button>
@@ -64,10 +68,10 @@
                       v-model="firstName"
                       type="text"
                       placeholder="First Name"
-                      class="h-[50x] outline-none border-b dark:bg-transparent bg-transparent dark:text-white px-10 py-1 text-xl"
+                      class="h-[50x] outline-none border-b dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000  px-10 py-1 text-xl"
                     />
                     <svg
-                      class="absolute top-0 left-0 mt-[-5px] dark:text-white"
+                      class="absolute top-0 left-0 mt-[-5px] dark:text-white transition-colors ease-in-out duration-1000 "
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
                       height="30"
@@ -99,11 +103,11 @@
                       v-model="email"
                       type="email"
                       placeholder="Email"
-                      class="h-[50x] outline-none dark:bg-transparent bg-transparent dark:text-white border-b px-10 py-1 text-xl"
+                      class="h-[50x] outline-none dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000  border-b px-10 py-1 text-xl"
                     />
                     <Icon
                       name="mdi-light:email"
-                      class="text-xl text-[#000] dark:text-white absolute top-0 left-0 mt-1"
+                      class="text-xl text-[#000] dark:text-white absolute transition-colors ease-in-out duration-1000  top-0 left-0 mt-1"
                     />
                   </div>
                   <div class="flex flex-col gap-8 relative">
@@ -111,11 +115,11 @@
                       v-model="password"
                       type="Password"
                       placeholder="*******"
-                      class="h-[50x] outline-none dark:bg-transparent w-full bg-transparent dark:text-white border-b px-10 py-1 text-xl"
+                      class="h-[50x] outline-none dark:bg-transparent w-full bg-transparent dark:text-white transition-colors ease-in-out duration-1000  border-b px-10 py-1 text-xl"
                     />
                     <Icon
                       name="arcticons:password"
-                      class="text-xl text-[#fffcfc] dark:text-white absolute top-0 left-0 mt-1"
+                      class="text-xl text-[#fffcfc] dark:text-white transition-colors ease-in-out duration-1000  absolute top-0 left-0 mt-1"
                     />
                   </div>
                 </div>
@@ -174,7 +178,7 @@
         <!-- your recipes -->
         <div>
           <div>
-            <h1 class="dark:text-white text-3xl py-5">Your recipes</h1>
+            <h1 class="dark:text-white transition-colors ease-in-out duration-1000  text-3xl py-5">Your recipes</h1>
             <div>
               <div>
                 <div
@@ -186,7 +190,7 @@
                     :to="{ name: 'profiledetail-id', params: { id: rec.id } }"
                     v-for="rec in user.recipes"
                     :key="rec.id"
-                    class="w-full border-2 h-full relative pb-10 dark:border-[#76807b] dark:hover:border-[#00DC82] hover:border-[#00DC82] rounded-md"
+                    class="w-full border-2 h-full relative pb-10 dark:border-[#76807b] transition-colors ease-in-out duration-1000  dark:hover:border-[#00DC82] hover:border-[#00DC82] rounded-md"
                   >
                     <ul v-for="image in rec.images" :key="image.id">
                       <img
@@ -196,14 +200,14 @@
                       />
                     </ul>
                     <p
-                      class="dark:text-white capitalize px-5 text-2xl font-bold py-3"
+                      class="dark:text-white transition-colors ease-in-out duration-1000  capitalize px-5 text-2xl font-bold py-3"
                     >
                       {{ rec.title }}
                     </p>
-                    <h1 class="text-2xl pt-2 px-2 dark:text-white">
+                    <h1 class="text-2xl pt-2 px-2 dark:text-white transition-colors ease-in-out duration-1000 ">
                       More about this recipes
                     </h1>
-                    <p class="dark:text-white px-5 py-3">
+                    <p class="dark:text-white transition-colors ease-in-out duration-1000  px-5 py-3">
                       {{ rec.description }}
                     </p>
                     <div
@@ -270,48 +274,45 @@ const onUpload = () => {
 
 const imageUrl = ref(null);
 
-const cloudName = "dmjtytstd";
-const apikey = process.env.VUE_APP_CLOUDINARY_API_KEY;
-const apiSecret = process.env.VUE_APP_CLOUDINARY_API_SECRET;
-const cld = new Cloudinary({
-  cloud: {
-    cloudName: cloudName,
-    apiKey: apikey,
-    apiSecret: apiSecret,
-  },
-});
-
 const selectedFile = ref("");
 const handleFileUpload = (event) => {
-  selectedFile.value = event.target.files[0];
+  const file = event.target.files[0]
 
-  //   const reader = new FileReader();
-  //   reader.onload = (e) => {
-  //     imageUrl.value = e.target.result;
-  //   };
-  //   reader.readAsDataURL(file);
+  if (file) {
+    selectedFile.value ={
+      file,
+      url: URL.createObjectURL(file)
+    }
+    console.log(selectedFile.value);
+   }
 };
 
-const uploadImage = () => {
-  if (selectedFile.value) {
-    const formData = new FormData();
-    formData.append("file", selectedFile.value);
-    formData.append("upload_preset", "mam-upload");
+const handleImageUpload = async() => {
+  try {
+    if (!selectedFile.value) {
+      console.log("No file selected")
+      return
+    }
 
-    fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
-      method: "POST",
-      body: formData,
+    const fileData = {
+      name: selectedFile.value.file.name,
+      base64str: await convertFileToBase64(selectedFile.value.file),
+      type: selectedFile.value.file.type
+    }
+
+    const result = await image_upload({
+      image: fileData
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("image uploaded successfully");
-        imageUrl.value = data.secure_url;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } else {
-    console.log("no file selected");
+     if (!result || !result.data) {
+      console.error("Error uploading file:", result);
+      alert("An error occurred while trying to upload the file");
+      return;
+     }
+
+     imageUrl.value =result.data?.profile.image_url
+     console.log(imageUrl.value)
+  } catch (error) {
+    console.log("error uploding profile", error)
   }
 };
 
@@ -319,6 +320,15 @@ const uploadImage = () => {
 //   // Reset preview on component mount or any updates
 //   imageUrl.value = null;
 // });
+
+const convertFileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader(file);
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result.split(",")[1])
+    reader.onerror = (error) => reject(error) 
+  })
+}
 
 const isPreviewVisible = computed(() => imageUrl.value !== null);
 
@@ -358,28 +368,25 @@ const { data } = useAsyncQuery(QUERY_USER, { id: userId });
 const firstName = ref(data.value?.users[0]?.first_name);
 const lastName = ref(data.value?.users[0]?.last_name);
 const email = ref(data.value?.users[0]?.email);
-const password = ref(data.value?.users[0]?.email);
+const password = ref(data.value?.users[0]?.password);
+
 
 const editPro = ref(false);
 
 const showProfile = () => {
   editPro.value = !editPro.value;
 };
-// password hashing
 
-const saltRound = 10;
-// const hashPassword = async (password) => {
-//   try {
-//     const salt = await bcrypt.genSalt(saltRound);
-//     const hashedPassword = await bcrypt.hash(password, salt);
-//     return hashedPassword;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
-// mutation for updating users
+const MUTATION_UPLOAD_IMAGE =gql`
+  mutation image_upload($image: ProfileImage!) {
+  profile(image: $image) {
+    image_url
+  }
+}
 
+`
+const {mutate: image_upload } = useMutation(MUTATION_UPLOAD_IMAGE)
 const MUTATION_UPDATE_USER = gql`
   mutation updatingUser(
     $email: String
@@ -473,7 +480,7 @@ input[type="file"] {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translatey(-60px);
+  transform: translatey(10px);
   opacity: 0;
 }
 </style>

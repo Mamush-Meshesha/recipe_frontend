@@ -74,9 +74,9 @@ const formatTimestamp = (timestamp) => {
   const now = new Date();
   const diff = now - createdAt;
 
-  const hours = Math.floor(diff / 3600000); // Calculate hours
-  const days = Math.floor(hours / 24); // Calculate days
-  const minutes = Math.floor(diff / 60000); // Calculate minutes
+  const hours = Math.floor(diff / 3600000); 
+  const days = Math.floor(hours / 24); 
+  const minutes = Math.floor(diff / 60000); 
 
   if (days > 0) {
     return `${days} days ago`;
@@ -92,14 +92,6 @@ const formatTimestamp = (timestamp) => {
     <Header />
     <div class="container mx-auto">
       <div class="flex gap-2 justify-between">
-        <div>
-          <Icon name="typcn:arrow-sync" class="text-2xl text-[#1a9599]" />
-          <h1
-            class="text-xl bg-gradient-to-tr from-[#0abd90] via-[#c501ab] to-[#0042bd] inline-block text-transparent bg-clip-text"
-          >
-            85% would make this again
-          </h1>
-        </div>
       </div>
       <div
         v-for="rec in result?.recipe"
@@ -140,22 +132,7 @@ const formatTimestamp = (timestamp) => {
                   {{ rec.comments_aggregate.aggregate.count }}
                 </h1>
               </div>
-              <!-- <div class="flex text-2xl border-r px-5">
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-                <button>&star;</button>
-              </div> -->
-              <!-- <div class="px-4">
-                <Icon name="icon-park-outline:like" class="text-2xl" />
-              </div>
-              <div class="flex items-center px-4 border-l">
-                <Icon
-                  name="material-symbols-light:bookmark-outline"
-                  class="text-3xl"
-                />
-              </div> -->
+
             </div>
           </div>
         </div>
@@ -184,7 +161,7 @@ const formatTimestamp = (timestamp) => {
             <p>{{ rec.preparetion_time }} Min</p>
           </div>
           <div>
-            <h1 class="text-2xl capitalize">favour by</h1>
+            <h1 class="text-2xl capitalize">favoured by</h1>
             <p>
               {{ rec.preparetion_time }} customers
             </p>
