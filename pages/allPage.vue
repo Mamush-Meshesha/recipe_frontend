@@ -167,16 +167,16 @@ const refetchData = () => {
         <div
           v-for="rec in result?.recipe"
           :key="rec.id"
-          class="rounded-md border"
+          class="rounded-md border dark:bg-[#232f4e]"
         >
           <div class="flex w-full">
-            <div v-for="i in rec.images" :key="i.id">
+            <NuxtLink :to="{name: 'all-id' , params: { id: rec.id }}" v-for="i in rec.images" :key="i.id">
               <img
                 :src="i.url[0]"
                 alt=""
                 class="rounded-md rounded-b-none w-[500px] object-cover h-[300px]"
               />
-            </div>
+            </NuxtLink>
           </div>
           <h1 class="px-2 py-4 dark:text-white">{{ rec.title }}</h1>
           <div v-for="reci in rec.images" :key="reci.id">

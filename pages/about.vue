@@ -148,7 +148,6 @@ const breakpoints = {
   },
 };
 
-
 definePageMeta({
   middleware: "auth",
 });

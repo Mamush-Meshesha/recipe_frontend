@@ -11,7 +11,7 @@
         <Transition name="slide-fade">
           <div
             v-if="isDropdownVisible"
-            class="border absolute bg-[#17797e] mt-2 ml-3 rounded-md p-2 grid grid-cols-2 gap-2"
+            class="border absolute bg-[#17797e] mt-2 ml-3 dark:text-white rounded-md p-2 grid grid-cols-2 gap-2"
           >
             <div
               @click="toggleSelectedIng(option)"
@@ -38,12 +38,12 @@ const IngreQuery = gql`
 `;
 const { result } = useQuery(IngreQuery);
 
-
 const emit = defineEmits(["update:modelValue"]);
 
 const dropdown = ref(null);
 const selectedIngredients = ref([]);
 const isDropdownVisible = ref(false);
+
 const mappedSelectedIng = computed(() => {
   if (selectedIngredients.value && selectedIngredients.value.length > 0) {
     const uniqueIngredients = selectedIngredients.value.reduce(

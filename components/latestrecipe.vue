@@ -8,7 +8,7 @@
         <div
           class="grid md:grid-cols-4 grid-cols-2 gap-2 mx-3 md:mx-0 md:gap-5"
         >
-          <div class="w-full" v-for="latest in result?.recipe" :key="latest.id">
+          <NuxtLink to="/modal" class="w-full" v-for="latest in result?.recipe" :key="latest.id">
             <!-- image -->
             <div class="w-full" v-for="image in latest.images" :key="image.id">
               <img
@@ -25,7 +25,7 @@
                 </h1>
               </div>
             </div>
-          </div>
+          </NuxtLink>
 
           <!-- two columns -->
         </div>

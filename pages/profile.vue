@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-[#040721] overflow-hidden relative transition-colors ease-in-out duration-1000">
+  <div class="dark:bg-[#040721] overflow-hidden min-h-screen flex flex-col justify-between relative transition-colors ease-in-out duration-1000">
     <div>
       <Header />
       <div class="container mx-auto">
@@ -21,9 +21,9 @@
           </div>
         </div>
 
-        <Transition   name="slide-fade" class="w-[100vw] top-0 overflow-hidden h-full  left-0 absolute opacity-80 z-40 bg-[#000000] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl  px-5 sm:px-0 ">
+        <Transition   name="slide-fade" class="w-[100vw] top-0  h-full bottom-0  left-0 absolute opacity-80 z-40 bg-[#000000] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl  px-5 sm:px-0 ">
           <div class="flex justify-center items-center" v-if="editPro">
-            <div class="w-[50%] h-[35%] mt-[-800px] relative opacity-100 rounded-lg bg-[#136463] flex justify-center border"
+            <div class="w-[50%] h-[35%] pb-[100px] relative opacity-100 rounded-lg bg-[#136463] flex justify-center border"
              
               
             >
@@ -143,7 +143,7 @@
           </div>
         </Transition>
         <div
-          class="py-6 bg-[#c2cecb] dark:bg-[#2d4c5a] transition-colors ease-in-out duration-1000 rounded-lg mb-10 relative h-[300px]"
+          class="py-6 bg-[#c2cecb] dark:bg-[#2d4c5a] transition-colors ease-in-out duration-1000 rounded-lg relative h-[300px]"
         >
           <div v-for="user in data?.users" :key="user.id">
             <div class="w-[100%] flex justify-center pt-[100px]">
@@ -261,7 +261,7 @@ import { jwtDecode } from "jwt-decode";
 import { Cloudinary } from "@cloudinary/url-gen";
 const toast = useToast();
 
-const route = useRoute();
+const router = useRoute();
 
 const onUpload = () => {
   toast.add({
@@ -316,10 +316,6 @@ const handleImageUpload = async() => {
   }
 };
 
-// onMounted(() => {
-//   // Reset preview on component mount or any updates
-//   imageUrl.value = null;
-// });
 
 const convertFileToBase64 = (file) => {
   return new Promise((resolve, reject) => {
@@ -363,7 +359,7 @@ const QUERY_USER = gql`
     }
   }
 `;
-const { data } = useAsyncQuery(QUERY_USER, { id: userId });
+const { data, refetch } = useAsyncQuery(QUERY_USER, { id: userId });
 
 const firstName = ref(data.value?.users[0]?.first_name);
 const lastName = ref(data.value?.users[0]?.last_name);
@@ -425,6 +421,8 @@ const handleUpdatingUser = async () => {
       url: imageUrl.value,
       id: userId,
     });
+    editPro.value = false
+    refetch()
   } catch (error) {
     console.log(error);
   }
@@ -432,6 +430,10 @@ const handleUpdatingUser = async () => {
 
 const { onLogout} = useApollo()
 
+const logout = () => {
+  onLogout();
+  navigateTo("/desktopthree");
+};
 const MUTATION_DELETE_USER = gql`
   mutation deleteUser($user_id: Int!) {
     delete_users(where: { id: { _eq: $user_id } }) {
@@ -446,7 +448,8 @@ const handleDeleteUser = async () => {
   await deleteUser({
     user_id: userId
   })
-  onLogout()
+  
+  logout()
   
 }
 

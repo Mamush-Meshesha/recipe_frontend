@@ -4,6 +4,7 @@ const errormessage = ref("");
 const ingredient = ref("");
 const ingredients = ref([]);
 
+const router = useRouter()
 const Catagory = ref("");
 const overlayModel = ref(false);
 const addIngradient = () => {
@@ -48,7 +49,6 @@ const selectOption = (value) => {
   isOpen.value = false;
 };
 const imageUrls = ref([]);
-// const selectedFile = ref(null);
 const fileInput = ref([]);
 const selectedFiles = ref([]);
 const handleFileUpload = (event) => {
@@ -98,7 +98,12 @@ const handleImageUpload = async () => {
     }
 
     imageUrls.value = [...result.data?.fileUpload.image_urls];
-
+    toast.add({
+      severity: "success",
+      summary: "Success",
+      detail: "image uploaded successfully",
+      life: 3000,
+    });
     console.log(imageUrls.value); // Output the image URLs for verification
   } catch (error) {
     console.error("Error uploading files:", error);
@@ -169,17 +174,10 @@ const MUTATION_INSERT = gql`
   }
 `;
 
-const { mutate: recipePost } = useMutation(MUTATION_INSERT);
+const { mutate: recipePost,reset } = useMutation(MUTATION_INSERT);
 
 const handleRecipeUpload = async () => {
   try {
-    // if (!selectedOPtion.value) {
-    //   console.error("Please select a category before uploading.");
-    // }
-    // const selectedCategory = options.find(
-    //   (option) => option.value === selectedOPtion.value
-    // );
-    // const categoryName = selectedCategory ? selectedCategory.text : "";
     const ingredientNames = ingredients.value.map(
       (ingredient) => ingredient.text
     );
@@ -206,6 +204,7 @@ const handleRecipeUpload = async () => {
       detail: "recipe successfully posted",
       life: 3000,
     });
+    navigateTo()
   } catch (error) {
     toast.add({
       severity: "error",
@@ -216,14 +215,6 @@ const handleRecipeUpload = async () => {
     console.log(error);
   }
 };
-const showSuccess = () => {
-  toast.add({
-    severity: "success",
-    summary: "Success Message",
-    detail: "Message Content",
-    life: 3000,
-  });
-};
 </script>
 
 <template>
@@ -231,11 +222,6 @@ const showSuccess = () => {
     class="overflow-x-hidden dark:bg-[#1E293B] relative transition-colors ease-in-out duration-1000"
   >
     <Header />
-    <!-- <img
-      src="https://imageproxy.wolt.com/venue/6232faaafd94b762808350de/ebcc50b6-a903-11ec-8d84-92cd96cd4d02_habib3.jpg"
-      alt="image not avaliable"
-      class="object-cover w-full mt-[-88px] h-[360px]"
-    /> -->
     <div class="container mx-auto pt-2">
       <div class="">
         <div
@@ -261,13 +247,18 @@ const showSuccess = () => {
                   <div>
                     <div class="relative">
                       <!-- <Catacom v-model="CatagoryNames" /> -->
-                      <input v-model="Catagory" type="text" placeholder="Catagory names" class="h-12 outline-none border rounded-md px-3">
+                      <input
+                        v-model="Catagory"
+                        type="text"
+                        placeholder="Catagory names"
+                        class="h-12 outline-none border rounded-md px-3"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <!-- descriptions -->
             <div class="pt-14"></div>
 
@@ -314,47 +305,49 @@ const showSuccess = () => {
                       </div>
                     </div>
                   </div>
-                  <Transition
-                    name="slide-fade"
-                    class="absolute bg-[#234770] dark:bg-[#000] h-[100vh] flex justify-center items-center opacity-90 z-40 right-0 top-0 border w-[100vw] rounded-md mt-20"
-                  >
-                    <div v-if="overlayModel">
-                      <div
-                        class="w-[50%] h-[50%] border flex items-center justify-center"
-                      >
-                        <div class="flex flex-col w-full px-7">
-                          <ol>
-                            <li class="py-3">
-                              <textarea
-                                v-model.trim="ingredient"
-                                placeholder="Enter your ingredients"
-                                class="w-full outline-[#31b4db] h-[140px] border p-3 dark:bg-[#313131] rounded-md border-[#2cb8e2]"
-                              >
-                              </textarea>
-                              <p v-if="errormessage" class="text-red-500">
-                                {{ errormessage }}
-                              </p>
-                            </li>
-                          </ol>
+                  <div class="overflow-y-hidden">
+                    <Transition
+                      name="slide-fade"
+                      class="absolute bg-[#234770] dark:bg-[#000] h-full  flex justify-center items-center opacity-90 z-40 right-0 top-0 border w-[100vw] rounded-md"
+                    >
+                      <div v-if="overlayModel">
+                        <div
+                          class="w-[50%] h-[30%] border flex items-center justify-center"
+                        >
+                          <div class="flex flex-col w-full px-7">
+                            <ol>
+                              <li class="py-3">
+                                <textarea
+                                  v-model.trim="ingredient"
+                                  placeholder="Enter your ingredients"
+                                  class="w-full outline-[#31b4db] h-[140px] border p-3 dark:bg-[#313131] rounded-md border-[#2cb8e2]"
+                                >
+                                </textarea>
+                                <p v-if="errormessage" class="text-red-500">
+                                  {{ errormessage }}
+                                </p>
+                              </li>
+                            </ol>
 
-                          <div class="flex flex-col gap-2">
-                            <button
-                              @click="addIngradient"
-                              class="text-white bg-[#52d117] px-3 py-1 rounded-md"
-                            >
-                              add ingredients
-                            </button>
-                            <button
-                              @click="overlayModel = false"
-                              class="text-white px-3 py-1 rounded-md bg-[#af1616]"
-                            >
-                              close
-                            </button>
+                            <div class="flex flex-col gap-2">
+                              <button
+                                @click="addIngradient"
+                                class="text-white bg-[#52d117] px-3 py-1 rounded-md"
+                              >
+                                add ingredients
+                              </button>
+                              <button
+                                @click="overlayModel = false"
+                                class="text-white px-3 py-1 rounded-md bg-[#af1616]"
+                              >
+                                close
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Transition>
+                    </Transition>
+                  </div>
                 </div>
                 <div class="flex gap-2 items-center">
                   <Icon name="flat-color-icons:plus" class="text-3xl" />
@@ -390,7 +383,7 @@ const showSuccess = () => {
               </div>
               <Transition
                 name="slide-fade"
-                class="absolute bg-[#234770] dark:bg-[#000] w- h-[100vh] flex justify-center items-center opacity-90 z-40 right-0 top-0 w-[100vw] rounded-md mt-20"
+                class="absolute bg-[#234770] dark:bg-[#000] w- h-full flex justify-center items-center opacity-90 z-40 right-0 top-0 w-[100vw] rounded-md "
               >
                 <div v-if="showDirectionOverlay">
                   <div class="w-[50%] h-[50%]">

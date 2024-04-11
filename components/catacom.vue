@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[500px]">
+  <div class="w-full">
     <div class="w-full relative flex" ref="dropdown">
       <div>
         <div
@@ -35,10 +35,7 @@
 </template>
 <script setup>
 
-// const props = defineProps({
-//   catagory: Array,
-//   modelValue: null
-// })
+
 
 const CatagoryQuery = gql`
   query MyQuery {
@@ -63,18 +60,6 @@ const mappedSelectedCat = computed(() => {
     : "please select catagory";
 });
 
-// const toggleSelectedIng = (option) => {
-//   if (selectedIngredients.value.includes(option)) {
-//     selectedIngredients.value = selectedIngredients.value.filter(
-//       (item) => item !== option
-//     );
-//     emit('update:modelValue', selectedIngredients.value.map((item) => item.name).join(" ",))
-//   } else {
-//     selectedIngredients.value.push(option);
-//     emit('update:modelValue', selectedIngredients.value.map((item) => item.name).join(" ",))
-//   }
-//   isDropdownVisible.value = false;
-// };
 
 const toggleSelectedCat = (catagory) => {
   const updatedCatagories = [...selectedCatagories.value];

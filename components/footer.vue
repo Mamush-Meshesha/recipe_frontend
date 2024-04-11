@@ -15,24 +15,33 @@
             <div class="flex flex-col gap-2">
               <h1 class="text-2xl font-bold">contact us</h1>
               <div class="flex gap-2 items-center">
-                <Icon name="iconamoon:email-thin" class="text-2xl"/>
+                <Icon name="iconamoon:email-thin" class="text-2xl" />
                 <h1>mam@gmail.com</h1>
               </div>
-              <!-- <NuxtLink to="www.linkedin.com/in/mamush-meshesha-25a829223" class="flex gap-2 items-center">
-               <Icon name="ph:linkedin-logo-thin" class="text-2xl"/>
-              <h1>Linkeden</h1>
-              </NuxtLink> -->
+              <a
+                href="https://www.linkedin.com/in/mamush-meshesha-25a829223"
+                class="flex gap-2 items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="ph:linkedin-logo-thin" class="text-2xl" />
+                <h1>LinkedIn</h1>
+              </a>
 
-              <!-- <NuxtLink to="https://t.me/mam1620shgmail" class="flex gap-2 items-center">
-              <Icon name="arcticons:telegram" class="text-2xl"/>
-              <h1>Telegram</h1>
-              </NuxtLink> -->
-             
+              <NuxtLink
+                to="https://t.me/mam1620shgmail"
+                class="flex gap-2 items-center"
+              >
+                <Icon name="arcticons:telegram" class="text-2xl" />
+                <h1>Telegram</h1>
+              </NuxtLink>
             </div>
           </div>
 
           <div>
-            <button>back to top</button>
+            <button @click="scrollToTop" v-show="isButtonVisible">
+              back to top
+            </button>
           </div>
         </div>
         <div
@@ -45,6 +54,24 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const isButtonVisible = ref(false);
+
+const handleScroll = () => {
+  isButtonVisible.value = window.scrollY > 20;
+};
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+</script>
 
 <style></style>

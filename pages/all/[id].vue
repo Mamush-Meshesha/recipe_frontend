@@ -160,7 +160,7 @@ const formatTimestamp = (timestamp) => {
             <h1 class="text-2xl capitalize border-r pr-6">Preparation time</h1>
             <p>{{ rec.preparetion_time }} Min</p>
           </div>
-      
+         
         </div>
 
         <div class=" sm:grid sm:grid-cols-2 pt-5 border-t gap-10">

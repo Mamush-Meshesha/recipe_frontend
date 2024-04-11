@@ -21,7 +21,6 @@
             v-for="foo in result?.recipe"
             :key="foo.id"
           >
-            <!-- <NuxtLink :to="{name: 'indexdetail-id', params: { id: foo.id}}"> -->
             <div>
               <!-- image -->
               <NuxtLink :to="{ name: 'fullindex-id', params: { id: foo.id } }">
@@ -35,13 +34,7 @@
               </NuxtLink>
               <!-- rating -->
               <div class="">
-                <!-- <div class="flex text-2xl">
-                  <button v-for="i in 5" :key="i" @click="selectStar(i)">
-                    &star;
-                  </button>
-                  lorem100
-                </div> -->
-                <div class="card flex justify-content-center">
+                <div class="card flex justify-content-center pl-3">
                   <Toast />
                   <Rating
                     @click="handleRatings(foo.id)"
@@ -56,10 +49,8 @@
                   >
                     {{ foo.title }}
                   </h1>
-
-                
                 </div>
-                <div class="flex items-center h-[40px] border-t">
+                <div class="flex items-center h-[40px] border-t pb-1">
                   <div class="px-5 flex justify-between items-center w-full">
                     <div class="flex gap-2 items-center">
                       <Toast />
@@ -167,6 +158,7 @@ const QUERY_USER = gql`
         }
       }
       ratings {
+        user_id
         rating_value
       }
     }
@@ -174,51 +166,7 @@ const QUERY_USER = gql`
 `;
 
 const { result, refetch, onDone, loading } = useQuery(QUERY_USER);
-
-// const value = ref(0);
-
-// const MUTATION_RATING = gql`
-//   mutation Rate($value: Int!) {
-//     update_rating(where: {}, _set: { value: $value }) {
-//       affected_rows
-//       returning {
-//         id
-//         value
-//         user_id
-//       }
-//     }
-//   }
-// `;
-
-// const { mutate: Rate } = useMutation(MUTATION_RATING);
-
-// const handleRating = async (recipe_id) => {
-//   await Rate({
-//     value: value.value++,
-//     recipe_id: recipe_id,
-//   });
-//   toast.add({
-//     severity: "success",
-//     summary: "Success",
-//     detail: "Rate updated successfully",
-//     life: 3000,
-//   });
-// };
-
-// mutation like
-
-// const QUERY_RATE = gql`
-//   query MyQuery($user_id: Int!, $recipe_id: Int!) {
-//     rating(
-//       where: { user_id: { _eq: $user_id }, recipe_id: { _eq: $recipe_id } }
-//     ) {
-//       rating_value
-//     }
-//   }
-// `;
-// const { result: resultRate } = useQuery(QUERY_RATE, {
-//   user_id: userId
-// })
+console.log(result.value);
 
 const LIKE_MUTATION = gql`
   mutation likeRecipe($recipe_id: Int!) {
@@ -329,17 +277,6 @@ const handleLikes = async (recipe_id, is_liked) => {
   }
 };
 
-// watch(
-//   () => result.value.data,
-//   (newValue) => {
-//     if (newValue && newValue.recipe) {
-//       isLiked.value = newValue.recipe.is_liked;
-//     }
-//   }
-// );
-
-// handle Bookmark
-
 const isbooked = ref(false);
 
 const handleBookmark = async (recipe_id, is_booked) => {
@@ -372,22 +309,16 @@ const handleBookmark = async (recipe_id, is_booked) => {
   }
 };
 
-// watch(
-//   () => result.value.data,
-//   (newValue) => {
-//     if (newValue && newValue.recipe) {
-//       isbooked.value = newValue.recipe.is_booked;
-//     }
-//   }
-// );
-
-const userRatingValue = ref(0);
+const userRatingValue = ref(1);
 
 const MUTATION_RATE = gql`
   mutation userRating($rating_value: Int!, $recipe_id: Int!) {
     insert_rating_one(
       object: { rating_value: $rating_value, recipe_id: $recipe_id }
-      on_conflict: { constraint: rating_user_id_recipe_id_key }
+      on_conflict: {
+        constraint: rating_user_id_recipe_id_key
+        update_columns: rating_value
+      }
     ) {
       rating_value
       user_id
@@ -395,32 +326,11 @@ const MUTATION_RATE = gql`
   }
 `;
 
-const MUTATION_UPDATE_RATE = gql`
-  mutation updateRate($rating_value: Int!, $recipe_id: Int!, $user_id: Int!) {
-    update_rating(
-      where: { user_id: { _eq: $user_id }, recipe_id: { _eq: $recipe_id } }
-      _set: { rating_value: $rating_value }
-    ) {
-      affected_rows
-    }
-  }
-`;
-const { mutate: updateRate } = useMutation(
-  MUTATION_UPDATE_RATE,
-  {
-    onDone: () => {
-      refetch(); // Refetch data after rating mutation
-    },
-  },
-  () => ({
-    fetchPolicy: "network-only",
-  })
-);
 const { mutate: userRating } = useMutation(
   MUTATION_RATE,
   {
     onDone: () => {
-      refetch(); // Refetch data after rating mutation
+      refetch();
     },
   },
   () => ({
@@ -428,46 +338,13 @@ const { mutate: userRating } = useMutation(
   })
 );
 
-const QUERY_CHECK_USER_RATING = gql`
-  query CheckUserRating {
-    rating {
-      id
-      rating_value
-      recipe {
-        id
-      }
-    }
-  }
-`;
-
-const {
-  result: userRatingResult,
-  loading: userRatingLoading,
-  error: userRatingError,
-} = useQuery(QUERY_CHECK_USER_RATING);
-
-const currentRate = result.value;
-
-
 const rated = ref(false);
 const handleRatings = async (recipe_id) => {
   try {
-    const userHasRated = result.value.recipe[0].ratings.some(
-      (rating) => rating.user_id === userId
-    );
-
-    if (userHasRated) {
-      await updateRate({
-        recipe_id: recipe_id,
-        rating_value: userRatingValue.value,
-        user_id: userId,
-      });
-    } else {
-      await userRating({
-        rating_value: userRatingValue.value,
-        recipe_id: recipe_id,
-      });
-    }
+    await userRating({
+      rating_value: userRatingValue.value,
+      recipe_id: recipe_id,
+    });
 
     rated.value = true;
     toast.add({
@@ -481,8 +358,6 @@ const handleRatings = async (recipe_id) => {
     console.log(error);
   }
 };
-
-
 </script>
 
 <style>

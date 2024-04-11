@@ -15,7 +15,7 @@
             <NuxtLink
                 to="/upload"
                 class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md "
-                >upload</NuxtLink
+                >create recipe</NuxtLink
               >
           <NuxtLink to="/favourate" class="font-fractul  capitalize text-xl hover:border hover:bg-[#00DC82] hover:text-white px-5 flex items-center rounded-md "
             >favourate</NuxtLink
@@ -24,7 +24,7 @@
 
         </div>
 
-        <div class="flex items-center relative gap-5">
+        <div class="flex items-center justify-between w-full sm:w-auto relative gap-5">
           <NuxtLink to="/allPage">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
               </div>
             </Transition>
           </div>
-          <button @click="showMenu">
+          <button @click="showMenu" class="float-right  flex">
             <svg
               class="w-8 h-8 block sm:hidden pr-0 text-gray-800 dark:text-white"
               aria-hidden="true"
