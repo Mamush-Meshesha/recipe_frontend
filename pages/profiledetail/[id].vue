@@ -15,7 +15,6 @@ const idds = route.params.id;
 const showEditPage = ref(false);
 const selectedOption = ref(null);
 
-
 const EDIT_QUERY = gql`
   query MyQuery($id: Int!) {
     recipe(where: { id: { _eq: $id } }) {
@@ -84,7 +83,6 @@ const handleDeleteRecipe = async (recipe_id) => {
   }
 };
 
-
 const MUTATION_UPDATE_RECIPE = gql`
   mutation updateTheRecipe(
     $preparetion_time: Int!
@@ -135,7 +133,6 @@ const { mutate: updateTheRecipe } = useMutation(MUTATION_UPDATE_RECIPE);
 
 const handleUpdateTheRecipe = async (recipe_id) => {
   try {
- 
     const selectedCategory = options.find(
       (option) => option.value === selectedOption.value
     );
@@ -511,143 +508,219 @@ const showSuccess = () => {
         </div>
       </div>
       <!-- edit pages -->
-      <Transition name="slide-fade" class="absolute bg-[#070e17] dark:bg-[#000] h-full left-0 text-white  opacity-90 z-40 right-0 top-0  w-[100vw] rounded-md">
-        <div class="w-[100%] h-[50%] flex justify-center items-center" v-if="showEditPage" >
-         <div class="border p-3 relative rounded-lg">
-          <div>
-            <button @click="showEditPage = false">
-              <Icon name="gala:remove" class="text-3xl absolute top-0 right-0 mt-4 mr-4 text-[#fe2121]"/>
-            </button>
-          </div>
-           <div class="">
-            <div
-              class="dark:bg-[#293548] transition-colors ease-in-out duration-1000 dark:text-white p-6 rounded-md"
-            >
-              <div class="">
-                <div
-                  class="flex sm:justify-between flex-col sm:flex-row gap-10"
-                >
-                  <div>
-                    <input
-                      v-model="title"
-                      type="text"
-                      placeholder="Title of recipe"
-                      class="px-3 w-full bg-transparent border-b-2 text-2xl outline-none"
-                    />
-                  </div>
-                  <div class="">
-                    <div class="flex gap-3 items-center">
-                      <Icon
-                        name="carbon:category-new"
-                        class="text-3xl text-[#17b69b]"
+      <Transition
+        name="slide-fade"
+        class="absolute bg-[#070e17] dark:bg-[#000] h-full left-0 text-white opacity-90 z-40 right-0 top-0 w-[100vw] rounded-md"
+      >
+        <div
+          class="w-[100%] h-[50%] flex justify-center items-center"
+          v-if="showEditPage"
+        >
+          <div class="border p-3 relative rounded-lg">
+            <div>
+              <button @click="showEditPage = false">
+                <Icon
+                  name="gala:remove"
+                  class="text-3xl absolute top-0 right-0 mt-4 mr-4 text-[#fe2121]"
+                />
+              </button>
+            </div>
+            <div class="">
+              <div
+                class="dark:bg-[#293548] transition-colors ease-in-out duration-1000 dark:text-white p-6 rounded-md"
+              >
+                <div class="">
+                  <div
+                    class="flex sm:justify-between flex-col sm:flex-row gap-10"
+                  >
+                    <div>
+                      <input
+                        v-model="title"
+                        type="text"
+                        placeholder="Title of recipe"
+                        class="px-3 w-full bg-transparent border-b-2 text-2xl outline-none"
                       />
+                    </div>
+                    <div class="">
+                      <div class="flex gap-3 items-center">
+                        <Icon
+                          name="carbon:category-new"
+                          class="text-3xl text-[#17b69b]"
+                        />
 
-                      <div>
-                        <div class="relative">
-                          <Catacom v-model="CatagoryNames" />
+                        <div>
+                          <div class="relative">
+                            <Catacom v-model="CatagoryNames" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- descriptions -->
+                  <div class="pt-14"></div>
+
+                  <div class="flex gap-4 items-center">
+                    <Icon name="tdesign:time" class="text-2xl text-[#17b69b]" />
+                    <input
+                      v-model="preparetion_time"
+                      type="number"
+                      placeholder="Preparetion time"
+                      class="text-2xl outline-none bg-transparent py-2 border-b-2"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      v-model="descriptions"
+                      placeholder="Descriptions about your recipes"
+                      class="h-[200px] p-3 outline-[#51bbbe] border text-black border-[#51bbbe] rounded-md w-full bg-transparent"
+                    ></textarea>
+                  </div>
+                  <!-- ingredients -->
                 </div>
-                <!-- descriptions -->
-                <div class="pt-14"></div>
 
-                <div class="flex gap-4 items-center">
-                  <Icon name="tdesign:time" class="text-2xl text-[#17b69b]" />
-                  <input
-                    v-model="preparetion_time"
-                    type="number"
-                    placeholder="Preparetion time"
-                    class="text-2xl outline-none bg-transparent py-2 border-b-2"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    v-model="descriptions"
-                    placeholder="Descriptions about your recipes"
-                    class="h-[200px] p-3 outline-[#51bbbe] border text-black border-[#51bbbe] rounded-md w-full bg-transparent"
-                  ></textarea>
-                </div>
-                <!-- ingredients -->
-              </div>
+                <div
+                  class="flex sm:justify-between flex-col sm:flex-row gap-10 py-6"
+                >
+                  <div class="w-[50%]">
+                    <div class="">
+                      <h1 class="sm:text-6xl text-3xl font-fractul border-b">
+                        ingredients
+                      </h1>
 
-              <div
-                class="flex sm:justify-between flex-col sm:flex-row gap-10 py-6"
-              >
-                <div class="w-[50%]">
-                  <div class="">
-                    <h1 class="sm:text-6xl text-3xl font-fractul border-b">
-                      ingredients
-                    </h1>
-
-                    <div class="py-10 relative">
-                      <div
-                        v-for="grad in ingredients"
-                        :key="grad.id"
-                        class="py-3"
-                      >
-                        <div class="flex gap-3">
-                          <Icon
-                            name="icon-park-outline:check-correct"
-                            class="text-2xl text-[#23cc48]"
-                          />
-                          <div v-if="grad.id">
-                            <h1>
-                              {{ grad.text }}
-                            </h1>
-                          </div>
-                          <div v-else>
-                            <h1 class="text-[#030303]">no ingredient</h1>
-                          </div>
-                        </div>
-                      </div>
-                      <Transition
-                        name="slide-fade"
-                        class="absolute bg-[#234770] dark:bg-[#3E858C] h-[40vh] flex justify-center items-center opacity-90 z-40 right-0 top-0 border w-[40vw] rounded-md mt-20"
-                      >
-                        <div v-if="overlayModel">
-                          <div
-                            class="w-[90%] h-[90%] flex items-center justify-center"
-                          >
-                            <div class="flex flex-col w-full px-7">
-                              <ol>
-                                <li class="py-3">
-                                  <textarea
-                                    v-model.trim="ingredient"
-                                    placeholder="Enter your ingredients"
-                                    class="w-full outline-[#31b4db] h-[140px] text-black dark:text-white border p-3 dark:bg-[#313131] rounded-md border-[#2cb8e2]"
-                                  >
-                                  </textarea>
-                                  <p v-if="errormessage" class="text-red-500">
-                                    {{ errormessage }}
-                                  </p>
-                                </li>
-                              </ol>
-
-                              <div class="flex flex-col gap-2">
-                                <button
-                                  @click="addIngradient"
-                                  class="text-white bg-[#52d117] px-3 py-1 rounded-md"
-                                >
-                                  add ingredients
-                                </button>
-                                <button
-                                  @click="overlayModel = false"
-                                  class="text-white px-3 py-1 rounded-md bg-[#af1616]"
-                                >
-                                  close
-                                </button>
-                              </div>
+                      <div class="py-10 relative">
+                        <div
+                          v-for="grad in ingredients"
+                          :key="grad.id"
+                          class="py-3"
+                        >
+                          <div class="flex gap-3">
+                            <Icon
+                              name="icon-park-outline:check-correct"
+                              class="text-2xl text-[#23cc48]"
+                            />
+                            <div v-if="grad.id">
+                              <h1>
+                                {{ grad.text }}
+                              </h1>
+                            </div>
+                            <div v-else>
+                              <h1 class="text-[#030303]">no ingredient</h1>
                             </div>
                           </div>
                         </div>
-                      </Transition>
+                        <Transition
+                          name="slide-fade"
+                          class="absolute bg-[#234770] dark:bg-[#3E858C] h-[40vh] flex justify-center items-center opacity-90 z-40 right-0 top-0 border w-[40vw] rounded-md mt-20"
+                        >
+                          <div v-if="overlayModel">
+                            <div
+                              class="w-[90%] h-[90%] flex items-center justify-center"
+                            >
+                              <div class="flex flex-col w-full px-7">
+                                <ol>
+                                  <li class="py-3">
+                                    <textarea
+                                      v-model.trim="ingredient"
+                                      placeholder="Enter your ingredients"
+                                      class="w-full outline-[#31b4db] h-[140px] text-black dark:text-white border p-3 dark:bg-[#313131] rounded-md border-[#2cb8e2]"
+                                    >
+                                    </textarea>
+                                    <p v-if="errormessage" class="text-red-500">
+                                      {{ errormessage }}
+                                    </p>
+                                  </li>
+                                </ol>
+
+                                <div class="flex flex-col gap-2">
+                                  <button
+                                    @click="addIngradient"
+                                    class="text-white bg-[#52d117] px-3 py-1 rounded-md"
+                                  >
+                                    add ingredients
+                                  </button>
+                                  <button
+                                    @click="overlayModel = false"
+                                    class="text-white px-3 py-1 rounded-md bg-[#af1616]"
+                                  >
+                                    close
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Transition>
+                      </div>
+                      <div class="flex gap-2 items-center">
+                        <Icon name="flat-color-icons:plus" class="text-3xl" />
+                        <button
+                          @click="overlayModel = true"
+                          class="text-[#28e221] text-2xl"
+                        >
+                          add
+                        </button>
+                      </div>
                     </div>
-                    <div class="flex gap-2 items-center">
+                  </div>
+                  <div class="border-r"></div>
+                  <div class="w-[50%] relative sm:px-0 dark:text-white">
+                    <h1
+                      class="sm:text-6xl text-3xl dark:text-white font-fractual border-b"
+                    >
+                      Instructions
+                    </h1>
+                    <div>
+                      <div
+                        v-for="(direction, index) in directions"
+                        :key="direction.id"
+                        class="py-2"
+                      >
+                        <div class="flex gap-3">
+                          <h1 class="text-2xl text-[#1d21df]">
+                            {{ index + 1 }} .
+                          </h1>
+                          <h1 class="text-2xl">
+                            {{ direction.derect }}
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+                    <Transition
+                      name="slide-fade"
+                      class="absolute bg-[#234770] dark:bg-[#32868c] w- h-[50vh] mr-[-300px] flex justify-center items-center opacity-90 z-40 right-0 top-0 w-[50vw] rounded-md mt-20"
+                    >
+                      <div v-if="showDirectionOverlay">
+                        <div class="w-[90%] h-[80%]">
+                          <div class="p-5 h-full">
+                            <textarea
+                              v-model="newdirection"
+                              placeholder="write your directions"
+                              class="h-[70%] outline-[#40e6cf] w-full dark:bg-[#464545] text-black dark:text-white p-3 rounded-md"
+                            ></textarea>
+                            <p v-if="mesage_error" class="text-red-500">
+                              {{ mesage_error }}
+                            </p>
+                            <div class="flex flex-col gap-2">
+                              <button
+                                @click="addDirection"
+                                class="text-white bg-[#52d117] px-3 py-1 rounded-md"
+                              >
+                                add direction
+                              </button>
+                              <button
+                                @click="showDirectionOverlay = false"
+                                class="text-white bg-[#c91cc0] px-3 py-1 rounded-md"
+                              >
+                                close
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Transition>
+                    <div class="flex gap-2 items-center pt-6">
                       <Icon name="flat-color-icons:plus" class="text-3xl" />
                       <button
-                        @click="overlayModel = true"
+                        @click="showDirectionOverlay = true"
                         class="text-[#28e221] text-2xl"
                       >
                         add
@@ -655,136 +728,69 @@ const showSuccess = () => {
                     </div>
                   </div>
                 </div>
-                <div class="border-r"></div>
-                <div class="w-[50%] relative sm:px-0 dark:text-white">
-                  <h1
-                    class="sm:text-6xl text-3xl dark:text-white font-fractual border-b"
-                  >
-                    Instructions
-                  </h1>
-                  <div>
-                    <div
-                      v-for="(direction, index) in directions"
-                      :key="direction.id"
-                      class="py-2"
-                    >
-                      <div class="flex gap-3">
-                        <h1 class="text-2xl text-[#1d21df]">
-                          {{ index + 1 }} .
-                        </h1>
-                        <h1 class="text-2xl">
-                          {{ direction.derect }}
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                  <Transition
-                    name="slide-fade"
-                    class="absolute bg-[#234770] dark:bg-[#32868c] w- h-[50vh] mr-[-300px] flex justify-center items-center opacity-90 z-40 right-0 top-0 w-[50vw] rounded-md mt-20"
-                  >
-                    <div v-if="showDirectionOverlay">
-                      <div class="w-[90%] h-[80%]">
-                        <div class="p-5 h-full">
-                          <textarea
-                            v-model="newdirection"
-                            placeholder="write your directions"
-                            class="h-[70%] outline-[#40e6cf] w-full dark:bg-[#464545] text-black dark:text-white p-3 rounded-md"
-                          ></textarea>
-                          <p v-if="mesage_error" class="text-red-500">
-                            {{ mesage_error }}
-                          </p>
-                          <div class="flex flex-col gap-2">
-                            <button
-                              @click="addDirection"
-                              class="text-white bg-[#52d117] px-3 py-1 rounded-md"
-                            >
-                              add direction
-                            </button>
-                            <button
-                              @click="showDirectionOverlay = false"
-                              class="text-white bg-[#c91cc0] px-3 py-1 rounded-md"
-                            >
-                              close
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Transition>
-                  <div class="flex gap-2 items-center pt-6">
-                    <Icon name="flat-color-icons:plus" class="text-3xl" />
-                    <button
-                      @click="showDirectionOverlay = true"
-                      class="text-[#28e221] text-2xl"
-                    >
-                      add
-                    </button>
-                  </div>
-                </div>
               </div>
+              <!-- ingredients -->
             </div>
-            <!-- ingredients -->
-          </div>
-          <!-- image -->
-          <div>
-            <div class="py-6 sm:px-0 px-5">
-              <label class="file-upload">
-                <div>
-                  <input
-                    type="file"
-                    ref="imageUrls"
-                    multiple
-                    @change="handleFileUpload"
-                    accept="image/*"
-                  />
-                </div>
-
-                <div class="flex gap-3 py-1 items-center">
-                  <svg
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <!-- SVG path for the upload icon -->
-                  </svg>
-                  <h1>Choose</h1>
-                  <Toast />
-                  <Button
-                    @click="handleImageUpload"
-                    class="px-2 py-1 bg-[#24803e] text-white rounded-md"
-                  >
-                    Upload
-                  </Button>
-                </div>
-              </label>
-              <div class="grid grid-cols-9 w-auto gap-2 pt-6">
-                <div v-for="(file, index) in selectedFiles" :key="index">
-                  <div
-                    class="py-4 flex justify-center border-dashed border rounded-md border-[#1d7fa9]"
-                  >
-                    <img
-                      :src="file.url"
-                      :alt="file.name"
-                      class="w-[100px] h-[100px] object-cover rounded-md"
+            <!-- image -->
+            <div>
+              <div class="py-6 sm:px-0 px-5">
+                <label class="file-upload">
+                  <div>
+                    <input
+                      type="file"
+                      ref="imageUrls"
+                      multiple
+                      @change="handleFileUpload"
+                      accept="image/*"
                     />
                   </div>
+
+                  <div class="flex gap-3 py-1 items-center">
+                    <svg
+                      width="20px"
+                      height="20px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <!-- SVG path for the upload icon -->
+                    </svg>
+                    <h1>Choose</h1>
+                    <Toast />
+                    <Button
+                      @click="handleImageUpload"
+                      class="px-2 py-1 bg-[#24803e] text-white rounded-md"
+                    >
+                      Upload
+                    </Button>
+                  </div>
+                </label>
+                <div class="grid grid-cols-9 w-auto gap-2 pt-6">
+                  <div v-for="(file, index) in selectedFiles" :key="index">
+                    <div
+                      class="py-4 flex justify-center border-dashed border rounded-md border-[#1d7fa9]"
+                    >
+                      <img
+                        :src="file.url"
+                        :alt="file.name"
+                        class="w-[100px] h-[100px] object-cover rounded-md"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="float-right">
-              <Toast />
-              <Button
-                @click="handleRecipeUpload"
-                severity="success"
-                class="px-12 py-2 bg-[#096777] text-white rounded-md"
-              >
-                Post
-              </Button>
+              <div class="float-right">
+                <Toast />
+                <Button
+                  @click="handleRecipeUpload"
+                  severity="success"
+                  class="px-12 py-2 bg-[#096777] text-white rounded-md"
+                >
+                  Post
+                </Button>
+              </div>
             </div>
           </div>
-         </div>
         </div>
       </Transition>
     </div>
@@ -807,3 +813,4 @@ const showSuccess = () => {
   opacity: 0;
 }
 </style>
+@cloudinary/url-gen/index

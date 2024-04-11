@@ -1,5 +1,7 @@
 <template>
-  <div class="dark:bg-[#040721] overflow-hidden min-h-screen flex flex-col justify-between relative transition-colors ease-in-out duration-1000">
+  <div
+    class="dark:bg-[#040721] overflow-hidden min-h-screen flex flex-col justify-between relative transition-colors ease-in-out duration-1000"
+  >
     <div>
       <Header />
       <div class="container mx-auto">
@@ -8,31 +10,39 @@
         >
           <div class="flex justify-between px-4 md:px-0 items-center">
             <h1
-              class="text-4xl font-fractul dark:text-white transition-colors ease-in-out duration-1000  font-semibold capitalize"
+              class="text-4xl font-fractul dark:text-white transition-colors ease-in-out duration-1000 font-semibold capitalize"
             >
               profile
             </h1>
             <button
               @click="showProfile"
-              class="px-9 py-2 bg-[#ff642f] dark:bg-[#3C4042] transition-colors ease-in-out duration-1000  text-white rounded-md"
+              class="px-9 py-2 bg-[#ff642f] dark:bg-[#3C4042] transition-colors ease-in-out duration-1000 text-white rounded-md"
             >
               Edit Profile
             </button>
           </div>
         </div>
 
-        <Transition   name="slide-fade" class="w-[100vw] top-0  h-full bottom-0  left-0 absolute opacity-80 z-40 bg-[#000000] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl  px-5 sm:px-0 ">
+        <Transition
+          name="slide-fade"
+          class="w-[100vw] top-0 h-full bottom-0 left-0 absolute opacity-80 z-40 bg-[#000000] transition-colors ease-in-out duration-1000 rounded-lg shadow-2xl px-5 sm:px-0"
+        >
           <div class="flex justify-center items-center" v-if="editPro">
-            <div class="w-[50%] h-[35%] pb-[100px] relative opacity-100 rounded-lg bg-[#136463] flex justify-center border"
-             
-              
+            <div
+              class="w-[50%] h-[35%] pb-[100px] relative opacity-100 rounded-lg bg-[#136463] flex justify-center border"
             >
-
-           <button @click="showProfile">
-             <Icon name="gala:remove" class="text-4xl mr-3 mt-3 absolute top-0 right-0 text-[#ff2727]"/>
-           </button>
+              <button @click="showProfile">
+                <Icon
+                  name="gala:remove"
+                  class="text-4xl mr-3 mt-3 absolute top-0 right-0 text-[#ff2727]"
+                />
+              </button>
               <!-- profile upload -->
-              <div class="pt-16 text-white" v-for="user in data.users" :key="user.id">
+              <div
+                class="pt-16 text-white"
+                v-for="user in data.users"
+                :key="user.id"
+              >
                 <div
                   class="flex gap-4 justify-center px-6 md:justify-content-center"
                 >
@@ -55,7 +65,7 @@
                   <div class="flex gap-6 items-center">
                     <button
                       @click="handleImageUpload"
-                      class="mx:px-12 px-6 h-[40px] text-white items-center dark:bg-[#3C4042]  transition-colors ease-in-out duration-1000 bg-[#ff642f] rounded-md"
+                      class="mx:px-12 px-6 h-[40px] text-white items-center dark:bg-[#3C4042] transition-colors ease-in-out duration-1000 bg-[#ff642f] rounded-md"
                     >
                       Change
                     </button>
@@ -68,10 +78,10 @@
                       v-model="firstName"
                       type="text"
                       placeholder="First Name"
-                      class="h-[50x] outline-none border-b dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000  px-10 py-1 text-xl"
+                      class="h-[50x] outline-none border-b dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000 px-10 py-1 text-xl"
                     />
                     <svg
-                      class="absolute top-0 left-0 mt-[-5px] dark:text-white transition-colors ease-in-out duration-1000 "
+                      class="absolute top-0 left-0 mt-[-5px] dark:text-white transition-colors ease-in-out duration-1000"
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
                       height="30"
@@ -103,11 +113,11 @@
                       v-model="email"
                       type="email"
                       placeholder="Email"
-                      class="h-[50x] outline-none dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000  border-b px-10 py-1 text-xl"
+                      class="h-[50x] outline-none dark:bg-transparent bg-transparent dark:text-white transition-colors ease-in-out duration-1000 border-b px-10 py-1 text-xl"
                     />
                     <Icon
                       name="mdi-light:email"
-                      class="text-xl text-[#000] dark:text-white absolute transition-colors ease-in-out duration-1000  top-0 left-0 mt-1"
+                      class="text-xl text-[#000] dark:text-white absolute transition-colors ease-in-out duration-1000 top-0 left-0 mt-1"
                     />
                   </div>
                   <div class="flex flex-col gap-8 relative">
@@ -115,11 +125,11 @@
                       v-model="password"
                       type="Password"
                       placeholder="*******"
-                      class="h-[50x] outline-none dark:bg-transparent w-full bg-transparent dark:text-white transition-colors ease-in-out duration-1000  border-b px-10 py-1 text-xl"
+                      class="h-[50x] outline-none dark:bg-transparent w-full bg-transparent dark:text-white transition-colors ease-in-out duration-1000 border-b px-10 py-1 text-xl"
                     />
                     <Icon
                       name="arcticons:password"
-                      class="text-xl text-[#fffcfc] dark:text-white transition-colors ease-in-out duration-1000  absolute top-0 left-0 mt-1"
+                      class="text-xl text-[#fffcfc] dark:text-white transition-colors ease-in-out duration-1000 absolute top-0 left-0 mt-1"
                     />
                   </div>
                 </div>
@@ -133,7 +143,10 @@
                     </button>
                   </div>
                   <div class="flex justify-end gap-[40%] py-10">
-                    <button @click="handleDeleteUser" class="text-[#ff8a63] px-4 border py-2 rounded-md">
+                    <button
+                      @click="handleDeleteUser"
+                      class="text-[#ff8a63] px-4 border py-2 rounded-md"
+                    >
                       Delete Account
                     </button>
                   </div>
@@ -178,7 +191,11 @@
         <!-- your recipes -->
         <div>
           <div>
-            <h1 class="dark:text-white transition-colors ease-in-out duration-1000  text-3xl py-5">Your recipes</h1>
+            <h1
+              class="dark:text-white transition-colors ease-in-out duration-1000 text-3xl py-5"
+            >
+              Your recipes
+            </h1>
             <div>
               <div>
                 <div
@@ -190,7 +207,7 @@
                     :to="{ name: 'profiledetail-id', params: { id: rec.id } }"
                     v-for="rec in user.recipes"
                     :key="rec.id"
-                    class="w-full border-2 h-full relative pb-10 dark:border-[#76807b] transition-colors ease-in-out duration-1000  dark:hover:border-[#00DC82] hover:border-[#00DC82] rounded-md"
+                    class="w-full border-2 h-full relative pb-10 dark:border-[#76807b] transition-colors ease-in-out duration-1000 dark:hover:border-[#00DC82] hover:border-[#00DC82] rounded-md"
                   >
                     <ul v-for="image in rec.images" :key="image.id">
                       <img
@@ -200,14 +217,18 @@
                       />
                     </ul>
                     <p
-                      class="dark:text-white transition-colors ease-in-out duration-1000  capitalize px-5 text-2xl font-bold py-3"
+                      class="dark:text-white transition-colors ease-in-out duration-1000 capitalize px-5 text-2xl font-bold py-3"
                     >
                       {{ rec.title }}
                     </p>
-                    <h1 class="text-2xl pt-2 px-2 dark:text-white transition-colors ease-in-out duration-1000 ">
+                    <h1
+                      class="text-2xl pt-2 px-2 dark:text-white transition-colors ease-in-out duration-1000"
+                    >
                       More about this recipes
                     </h1>
-                    <p class="dark:text-white transition-colors ease-in-out duration-1000  px-5 py-3">
+                    <p
+                      class="dark:text-white transition-colors ease-in-out duration-1000 px-5 py-3"
+                    >
                       {{ rec.description }}
                     </p>
                     <div
@@ -276,55 +297,54 @@ const imageUrl = ref(null);
 
 const selectedFile = ref("");
 const handleFileUpload = (event) => {
-  const file = event.target.files[0]
+  const file = event.target.files[0];
 
   if (file) {
-    selectedFile.value ={
+    selectedFile.value = {
       file,
-      url: URL.createObjectURL(file)
-    }
+      url: URL.createObjectURL(file),
+    };
     console.log(selectedFile.value);
-   }
+  }
 };
 
-const handleImageUpload = async() => {
+const handleImageUpload = async () => {
   try {
     if (!selectedFile.value) {
-      console.log("No file selected")
-      return
+      console.log("No file selected");
+      return;
     }
 
     const fileData = {
       name: selectedFile.value.file.name,
       base64str: await convertFileToBase64(selectedFile.value.file),
-      type: selectedFile.value.file.type
-    }
+      type: selectedFile.value.file.type,
+    };
 
     const result = await image_upload({
-      image: fileData
-    })
-     if (!result || !result.data) {
+      image: fileData,
+    });
+    if (!result || !result.data) {
       console.error("Error uploading file:", result);
       alert("An error occurred while trying to upload the file");
       return;
-     }
+    }
 
-     imageUrl.value =result.data?.profile.image_url
-     console.log(imageUrl.value)
+    imageUrl.value = result.data?.profile.image_url;
+    console.log(imageUrl.value);
   } catch (error) {
-    console.log("error uploding profile", error)
+    console.log("error uploding profile", error);
   }
 };
-
 
 const convertFileToBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader(file);
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result.split(",")[1])
-    reader.onerror = (error) => reject(error) 
-  })
-}
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (error) => reject(error);
+  });
+};
 
 const isPreviewVisible = computed(() => imageUrl.value !== null);
 
@@ -366,23 +386,20 @@ const lastName = ref(data.value?.users[0]?.last_name);
 const email = ref(data.value?.users[0]?.email);
 const password = ref(data.value?.users[0]?.password);
 
-
 const editPro = ref(false);
 
 const showProfile = () => {
   editPro.value = !editPro.value;
 };
 
-
-const MUTATION_UPLOAD_IMAGE =gql`
+const MUTATION_UPLOAD_IMAGE = gql`
   mutation image_upload($image: ProfileImage!) {
-  profile(image: $image) {
-    image_url
+    profile(image: $image) {
+      image_url
+    }
   }
-}
-
-`
-const {mutate: image_upload } = useMutation(MUTATION_UPLOAD_IMAGE)
+`;
+const { mutate: image_upload } = useMutation(MUTATION_UPLOAD_IMAGE);
 const MUTATION_UPDATE_USER = gql`
   mutation updatingUser(
     $email: String
@@ -421,14 +438,14 @@ const handleUpdatingUser = async () => {
       url: imageUrl.value,
       id: userId,
     });
-    editPro.value = false
-    refetch()
+    editPro.value = false;
+    refetch();
   } catch (error) {
     console.log(error);
   }
 };
 
-const { onLogout} = useApollo()
+const { onLogout } = useApollo();
 
 const logout = () => {
   onLogout();
@@ -442,17 +459,15 @@ const MUTATION_DELETE_USER = gql`
   }
 `;
 
-const { mutate: deleteUser } = useMutation(MUTATION_DELETE_USER)
+const { mutate: deleteUser } = useMutation(MUTATION_DELETE_USER);
 
 const handleDeleteUser = async () => {
   await deleteUser({
-    user_id: userId
-  })
-  
-  logout()
-  
-}
+    user_id: userId,
+  });
 
+  logout();
+};
 
 definePageMeta({
   middleware: "auth",
@@ -487,3 +502,4 @@ input[type="file"] {
   opacity: 0;
 }
 </style>
+@cloudinary/url-gen/index
